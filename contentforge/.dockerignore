@@ -1,0 +1,20 @@
+# Secrets — provided at runtime via Cloud Run env / Secret Manager, never baked in
+**/.env
+**/.env.local
+**/.env.*.local
+
+# Dependencies (reinstalled inside the image)
+**/node_modules
+
+# Build artifacts (frontend is rebuilt in the builder stage)
+frontend/dist
+backend/public
+
+# Local / editor cruft
+**/.DS_Store
+.git
+.gitignore
+
+# Tests and scratch scripts not needed at runtime
+backend/test-*.js
+backend/test_*.js

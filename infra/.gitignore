@@ -1,0 +1,7 @@
+.terraform/
+*.tfstate
+*.tfstate.*
+.terraform.lock.hcl
+crash.log
+.demo_credentials
+.secrets_ready

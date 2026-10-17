@@ -1,0 +1,22 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="24" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    <linearGradient id="spark-grad" x1="256" y1="40" x2="256" y2="240" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#93C5FD" />
+      <stop offset="0.5" stop-color="#2563EB" />
+      <stop offset="1" stop-color="#1E40AF" />
+    </linearGradient>
+  </defs>
+
+  <!-- Spark / Flame -->
+  <path d="M256 40 C 275 110, 370 120, 310 190 C 350 190, 320 250, 256 220 C 192 250, 162 190, 202 190 C 142 120, 237 110, 256 40 Z" fill="url(#spark-grad)" filter="url(#glow)"/>
+
+  <!-- Left side of Nib -->
+  <path d="M252 190 L140 340 C140 340, 160 460, 190 460 L252 460 L252 364 A 14 14 0 0 1 252 336 L252 190 Z" fill="#1E293B"/>
+  
+  <!-- Right side of Nib -->
+  <path d="M260 190 L260 336 A 14 14 0 0 1 260 364 L260 460 L322 460 C352 460, 372 340, 372 340 L260 190 Z" fill="#0F172A"/>
+</svg>

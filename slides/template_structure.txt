@@ -1,0 +1,532 @@
+slide size 10.0 5.625
+layouts: ['BLANK', 'BLANK_1']
+
+--- slide 1  layout='BLANK'
+  TEXT_BOX (17)          Google Shape;17;p4                          (1.3,2.2 7.4x1.0)      Title Slides
+
+--- slide 2  layout='BLANK'
+  TEXT_BOX (17)          Google Shape;22;p5                          (0.9,1.2 1.8x0.3)      Mauritius 2026 
+  TEXT_BOX (17)          Google Shape;23;p5                          (0.9,4.1 4.7x0.7)      Name Lastname / Title, Company
+  TEXT_BOX (17)          Google Shape;24;p5                          (0.9,2.0 8.1x1.9)      Here is a big and bold two line title
+  TEXT_BOX (17)          Google Shape;25;p5                          (0.8,0.2 1.8x0.6)      Track
+
+--- slide 3  layout='BLANK'
+  TEXT_BOX (17)          Google Shape;30;p6                          (0.9,4.1 4.7x0.7)      Name Lastname / Title, Company
+  TEXT_BOX (17)          Google Shape;31;p6                          (0.9,2.1 8.1x1.9)      Use this template for titles that are very long, up to three lines max
+  TEXT_BOX (17)          Google Shape;32;p6                          (0.9,1.2 1.8x0.3)        Mauritius 2026
+  TEXT_BOX (17)          Google Shape;33;p6                          (0.8,0.2 1.8x0.6)      Track
+
+--- slide 4  layout='BLANK'
+  TEXT_BOX (17)          Google Shape;38;p7                          (0.9,4.1 4.7x0.7)      Name Lastname / Title, Company
+  TEXT_BOX (17)          Google Shape;39;p7                          (0.9,2.1 8.1x1.9)      Use this template for titles that are very long, up to three lines max
+  TEXT_BOX (17)          Google Shape;40;p7                          (7.3,0.5 2.1x1.1)      2026
+  TEXT_BOX (17)          Google Shape;41;p7                          (0.9,1.2 1.8x0.3)      Mauritius 
+  TEXT_BOX (17)          Google Shape;42;p7                          (0.8,0.2 1.8x0.6)      Track
+
+--- slide 5  layout='BLANK'
+  PICTURE (13)           Google Shape;47;p8                          (5.4,-0.5 4.9x6.2)     
+  PICTURE (13)           Google Shape;48;p8                          (-0.0,0.0 10.0x5.6)    
+  TEXT_BOX (17)          Google Shape;49;p8                          (0.4,4.1 4.7x0.7)      Name Lastname / Title, Company
+  TEXT_BOX (17)          Google Shape;50;p8                          (0.4,2.1 4.7x1.9)      This is for short, three lines titles
+  TEXT_BOX (17)          Google Shape;51;p8                          (0.9,1.2 1.8x0.3)      Mauritius 2026 
+  TEXT_BOX (17)          Google Shape;52;p8                          (0.8,0.2 1.8x0.6)      Track
+
+--- slide 6  layout='BLANK'
+  TEXT_BOX (17)          Google Shape;57;p9                          (0.7,0.5 2.1x1.1)      01
+  TEXT_BOX (17)          Google Shape;58;p9                          (3.6,0.9 5.7x2.8)       / Single line titles
+  TEXT_BOX (17)          Google Shape;59;p9                          (3.6,2.5 3.1x1.7)      Here is a subhead example, please keep to three lines max
+
+--- slide 7  layout='BLANK'
+  TEXT_BOX (17)          Google Shape;64;p10                         (0.7,0.5 2.1x1.1)      02
+  TEXT_BOX (17)          Google Shape;65;p10                         (3.6,0.9 5.7x2.8)       / Short titles are two lines max
+  TEXT_BOX (17)          Google Shape;66;p10                         (3.6,3.2 3.1x1.7)      Here is a subhead example, please keep to three lines max
+
+--- slide 8  layout='BLANK'
+  TEXT_BOX (17)          Google Shape;71;p11                         (0.7,0.5 2.1x1.1)      03
+  TEXT_BOX (17)          Google Shape;72;p11                         (3.6,0.9 5.7x2.8)       / Midsize section titles are three lines max
+  TEXT_BOX (17)          Google Shape;73;p11                         (3.6,3.9 3.1x1.0)      Here is a subhead example, please keep to three lines max
+
+--- slide 9  layout='BLANK'
+  TEXT_BOX (17)          Google Shape;78;p12                         (0.7,0.5 2.1x1.1)      04
+  TEXT_BOX (17)          Google Shape;79;p12                         (3.6,0.9 5.7x2.6)      This is an example of  / a long section title, please keep these to fo
+  TEXT_BOX (17)          Google Shape;80;p12                         (3.6,3.6 3.1x1.0)      Here is a subhead example, please keep  / to three lines max
+
+--- slide 10  layout='BLANK'
+  TEXT_BOX (17)          Google Shape;85;p13                         (0.7,0.5 2.1x1.1)      05
+  TEXT_BOX (17)          Google Shape;86;p13                         (3.6,0.9 5.7x3.2)      This is an example of a section title slide that is super long, please
+  TEXT_BOX (17)          Google Shape;87;p13                         (3.6,4.2 3.1x1.0)      These subheads can  / be two lines max
+
+--- slide 11  layout='BLANK'
+  TEXT_BOX (17)          Google Shape;92;p14                         (4.1,0.9 5.7x2.8)      Midsize section titles are three lines max
+  TEXT_BOX (17)          Google Shape;93;p14                         (4.1,3.3 4.0x1.0)      Here is a subhead  / example, please keep  / to three lines max
+  TEXT_BOX (17)          Google Shape;94;p14                         (0.9,1.1 1.8x0.3)      Mauritius 2026
+  TEXT_BOX (17)          Google Shape;95;p14                         (0.9,0.2 1.8x0.6)      Track
+
+--- slide 12  layout='BLANK'
+  TEXT_BOX (17)          Google Shape;100;p15                        (4.1,0.9 5.7x2.8)      Midsize section titles are three lines max
+  TEXT_BOX (17)          Google Shape;101;p15                        (4.1,3.3 4.0x1.0)      Here is a subhead  / example, please keep  / to three lines max
+  TEXT_BOX (17)          Google Shape;102;p15                        (0.9,0.2 1.8x0.6)      Track
+  TEXT_BOX (17)          Google Shape;103;p15                        (0.9,1.1 1.8x0.3)      Mauritius 2026
+
+--- slide 13  layout='BLANK'
+  TEXT_BOX (17)          Google Shape;108;p16                        (4.1,0.9 5.1x2.6)      This is an example of  / a long section title, please keep these to fo
+  TEXT_BOX (17)          Google Shape;109;p16                        (4.1,3.6 2.8x0.9)      Here is a subhead example, please keep  / to three lines max
+  TEXT_BOX (17)          Google Shape;110;p16                        (0.9,1.1 1.8x0.3)      Mauritius 2026
+  TEXT_BOX (17)          Google Shape;111;p16                        (0.9,0.2 1.8x0.6)      Track
+
+--- slide 14  layout='BLANK'
+  TEXT_BOX (17)          Google Shape;116;p17                        (4.1,0.9 5.2x3.2)      This is an example of a section title slide that is super long, please
+  TEXT_BOX (17)          Google Shape;117;p17                        (4.1,4.3 2.8x0.6)      These subheads can  / be two lines max
+  TEXT_BOX (17)          Google Shape;118;p17                        (0.9,1.1 1.8x0.3)      Mauritius 2026 
+  TEXT_BOX (17)          Google Shape;119;p17                        (0.9,0.2 1.8x0.6)      Track
+
+--- slide 15  layout='BLANK'
+  TEXT_BOX (17)          Google Shape;124;p18                        (1.3,2.2 7.4x1.0)      Content Slides
+
+--- slide 16  layout='BLANK'
+  PICTURE (13)           Google Shape;129;p19                        (-0.0,0.0 10.0x5.6)    
+  TEXT_BOX (17)          Google Shape;130;p19                        (0.9,0.9 8.1x3.9)      Use this slide for a large block of text. Lorem ipsum dolor sit amet, 
+
+--- slide 17  layout='BLANK'
+  PICTURE (13)           Google Shape;135;p20                        (-0.0,0.0 10.0x5.6)    
+  TEXT_BOX (17)          Google Shape;136;p20                        (0.9,0.9 8.1x3.9)      Use this slide for a large block of text. Lorem ipsum dolor sit amet, 
+  TEXT_BOX (17)          Google Shape;137;p20                        (0.9,4.2 5.6x0.6)      These subheads can  / be two lines max
+
+--- slide 18  layout='BLANK'
+  PICTURE (13)           Google Shape;142;p21                        (-0.0,0.0 10.0x5.6)    
+  TEXT_BOX (17)          Google Shape;143;p21                        (0.9,0.9 7.8x3.9)      Bullet one goes here / Bullet two goes here and can be freakishly long
+  GROUP (6)              Google Shape;144;p21                        (0.1,2.0 1.2x0.8)      
+  GROUP (6)              Google Shape;147;p21                        (0.1,4.2 1.2x0.7)      
+
+--- slide 19  layout='BLANK'
+  PICTURE (13)           Google Shape;154;p22                        (-0.0,0.0 10.0x5.6)    
+  TEXT_BOX (17)          Google Shape;155;p22                        (0.9,0.8 7.8x3.9)      Example with slide title / Bullet one goes here / Bullet two goes here
+
+--- slide 20  layout='BLANK'
+  PICTURE (13)           Google Shape;160;p23                        (-0.0,0.0 10.0x5.6)    
+  TEXT_BOX (17)          Google Shape;161;p23                        (0.9,0.8 7.8x1.3)      Example with slide title, but what if it’s two lines of text?
+  TEXT_BOX (17)          Google Shape;162;p23                        (0.9,2.1 7.8x3.9)      Bullet one goes here / Bullet two goes here / Bullet three goes here /
+
+--- slide 21  layout='BLANK'
+  TEXT_BOX (17)          Google Shape;167;p24                        (1.6,1.9 3.8x1.8)      Simple statement or quote goes here, lorem ipsum dolor sit amet adipis
+  TEXT_BOX (17)          Google Shape;168;p24                        (7.3,1.2 1.8x0.3)      Mauritius 2026
+  TEXT_BOX (17)          Google Shape;169;p24                        (7.3,0.2 1.8x0.6)      Track
+
+--- slide 22  layout='BLANK'
+  TEXT_BOX (17)          Google Shape;174;p25                        (1.6,1.9 3.8x1.8)      Simple statement or quote goes here, lorem ipsum dolor sit amet adipis
+  TEXT_BOX (17)          Google Shape;175;p25                        (7.3,1.2 1.8x0.3)      Mauritius 2026 
+  TEXT_BOX (17)          Google Shape;176;p25                        (7.3,0.2 1.8x0.6)      Track
+
+--- slide 23  layout='BLANK'
+  TEXT_BOX (17)          Google Shape;181;p26                        (1.6,1.9 3.8x1.8)      Simple statement or quote goes here, lorem ipsum dolor sit amet adipis
+  TEXT_BOX (17)          Google Shape;182;p26                        (7.3,1.2 1.8x0.3)      Mauritius 2026 
+  TEXT_BOX (17)          Google Shape;183;p26                        (7.3,0.2 1.8x0.6)      Track
+
+--- slide 24  layout='BLANK'
+  TEXT_BOX (17)          Google Shape;188;p27                        (1.6,1.9 3.8x1.8)      Simple statement or quote goes here, lorem ipsum dolor sit amet adipis
+  TEXT_BOX (17)          Google Shape;189;p27                        (7.3,1.2 1.8x0.3)      Mauritius 2026 
+  TEXT_BOX (17)          Google Shape;190;p27                        (7.3,0.2 1.8x0.6)      Track
+
+--- slide 25  layout='BLANK'
+  TEXT_BOX (17)          Google Shape;195;p28                        (1.6,1.9 3.8x1.8)      Simple statement or quote goes here, lorem ipsum dolor sit amet adipis
+  TEXT_BOX (17)          Google Shape;196;p28                        (7.3,1.2 1.8x0.3)      Mauritius 2026 
+  TEXT_BOX (17)          Google Shape;197;p28                        (7.3,0.2 1.8x0.6)      Track
+
+--- slide 26  layout='BLANK'
+  AUTO_SHAPE (1)         Google Shape;202;p29                        (0.3,0.4 4.9x0.8)      Use more than
+  AUTO_SHAPE (1)         Google Shape;203;p29                        (0.3,4.5 4.9x0.8)      of this large number slide
+  AUTO_SHAPE (1)         Google Shape;204;p29                        (5.5,0.4 1.2x1.2)      
+  AUTO_SHAPE (1)         Google Shape;205;p29                        (8.5,4.1 1.2x1.2)      
+  AUTO_SHAPE (1)         Google Shape;206;p29                        (5.4,0.4 3.0x4.9)      
+  PICTURE (13)           Google Shape;207;p29                        (0.4,1.5 0.4x2.6)      
+  PICTURE (13)           Google Shape;208;p29                        (4.8,1.5 0.4x2.6)      
+  AUTO_SHAPE (1)         Google Shape;209;p29                        (6.7,0.4 3.0x4.9)      
+  PLACEHOLDER (14)       Google Shape;210;p29         ph[4294967295:TITLE (1)] (0.4,2.0 4.9x1.6)      50%
+
+--- slide 27  layout='BLANK'
+  PICTURE (13)           Google Shape;215;p30                        (2.9,2.9 6.7x2.3)      
+  PICTURE (13)           Google Shape;216;p30                        (0.0,0.0 10.0x5.6)     
+  AUTO_SHAPE (1)         Google Shape;217;p30                        (0.4,0.4 4.1x2.2)      
+  PICTURE (13)           Google Shape;218;p30                        (7.4,0.4 2.2x2.2)      
+  PICTURE (13)           Google Shape;219;p30                        (0.4,3.0 2.2x2.2)      
+  PICTURE (13)           Google Shape;220;p30                        (0.4,0.4 4.1x2.2)      
+  PICTURE (13)           Google Shape;221;p30                        (4.9,0.4 2.2x2.2)      
+
+--- slide 28  layout='BLANK'
+  PICTURE (13)           Google Shape;226;p31                        (5.1,-0.5 4.6x6.1)     
+  PICTURE (13)           Google Shape;227;p31                        (0.0,0.0 10.0x5.6)     
+  PICTURE (13)           Google Shape;228;p31                        (0.4,0.4 4.4x4.8)      
+
+--- slide 29  layout='BLANK_1'
+  PICTURE (13)           Google Shape;233;p32                        (5.4,-0.6 4.6x6.3)     
+  TEXT_BOX (17)          Google Shape;234;p32                        (0.3,0.6 4.7x3.2)      Simple quote or statement goes here. Ideally limit to four or five lin
+
+--- slide 30  layout='BLANK_1'
+  PICTURE (13)           Google Shape;239;p33                        (5.4,-0.5 4.5x6.1)     
+  PICTURE (13)           Google Shape;240;p33                        (3.9,0.0 6.1x5.6)      
+  TEXT_BOX (17)          Google Shape;241;p33                        (0.3,0.6 4.7x3.2)      Simple quote or statement goes here. Ideally limit to four or five lin
+
+--- slide 31  layout='BLANK_1'
+  PICTURE (13)           Google Shape;246;p34                        (5.4,-0.6 4.6x6.3)     
+  AUTO_SHAPE (1)         Google Shape;247;p34                        (0.5,1.8 2.6x1.0)      50%
+  PLACEHOLDER (14)       Google Shape;248;p34         ph[4294967295:TITLE (1)] (0.3,0.9 4.4x0.6)      Use more than
+  PLACEHOLDER (14)       Google Shape;249;p34         ph[4294967295:TITLE (1)] (0.3,3.0 4.5x0.6)      Of this number slide
+
+--- slide 32  layout='BLANK'
+  AUTO_SHAPE (1)         Google Shape;254;p35                        (0.3,0.4 4.7x0.8)      Use more than
+  AUTO_SHAPE (1)         Google Shape;255;p35                        (0.3,4.5 4.7x0.8)      of this large number slide
+  PICTURE (13)           Google Shape;256;p35                        (0.4,1.5 0.4x2.6)      
+  PICTURE (13)           Google Shape;257;p35                        (4.6,1.5 0.4x2.6)      
+  PLACEHOLDER (14)       Google Shape;258;p35         ph[4294967295:TITLE (1)] (0.3,2.0 4.7x1.6)      50%
+  PICTURE (13)           Google Shape;259;p35                        (5.4,-0.6 4.6x6.3)     
+
+--- slide 33  layout='BLANK'
+  AUTO_SHAPE (1)         Google Shape;264;p36                        (0.3,0.4 4.7x0.8)      Use more than
+  AUTO_SHAPE (1)         Google Shape;265;p36                        (0.3,4.5 4.7x0.8)      of this large number slide
+  PICTURE (13)           Google Shape;266;p36                        (0.4,1.5 0.4x2.6)      
+  PICTURE (13)           Google Shape;267;p36                        (4.6,1.5 0.4x2.6)      
+  PLACEHOLDER (14)       Google Shape;268;p36         ph[4294967295:TITLE (1)] (0.3,2.0 4.7x1.6)      50%
+  PICTURE (13)           Google Shape;269;p36                        (5.4,-0.6 4.6x6.3)     
+
+--- slide 34  layout='BLANK'
+  AUTO_SHAPE (1)         Google Shape;274;p37                        (0.3,0.4 4.7x0.8)      Use more than
+  AUTO_SHAPE (1)         Google Shape;275;p37                        (0.3,4.5 4.7x0.8)      of this large number slide
+  PICTURE (13)           Google Shape;276;p37                        (0.4,1.5 0.4x2.6)      
+  PICTURE (13)           Google Shape;277;p37                        (4.6,1.5 0.4x2.6)      
+  PLACEHOLDER (14)       Google Shape;278;p37         ph[4294967295:TITLE (1)] (0.3,2.0 4.7x1.6)      50%
+  PICTURE (13)           Google Shape;279;p37                        (5.4,-0.6 4.6x6.3)     
+
+--- slide 35  layout='BLANK'
+  AUTO_SHAPE (1)         Google Shape;284;p38                        (0.3,0.4 4.7x0.8)      Use more than
+  AUTO_SHAPE (1)         Google Shape;285;p38                        (0.3,4.5 4.7x0.8)      of this large number slide
+  PICTURE (13)           Google Shape;286;p38                        (0.4,1.5 0.4x2.6)      
+  PICTURE (13)           Google Shape;287;p38                        (4.6,1.5 0.4x2.6)      
+  PLACEHOLDER (14)       Google Shape;288;p38         ph[4294967295:TITLE (1)] (0.3,2.0 4.7x1.6)      50%
+  PICTURE (13)           Google Shape;289;p38                        (5.4,-0.6 4.6x6.3)     
+
+--- slide 36  layout='BLANK'
+  AUTO_SHAPE (1)         Google Shape;294;p39                        (0.3,0.4 4.7x0.8)      Use more than
+  AUTO_SHAPE (1)         Google Shape;295;p39                        (0.3,4.5 4.7x0.8)      of this large number slide
+  PICTURE (13)           Google Shape;296;p39                        (0.4,1.5 0.4x2.6)      
+  PICTURE (13)           Google Shape;297;p39                        (4.6,1.5 0.4x2.6)      
+  PLACEHOLDER (14)       Google Shape;298;p39         ph[4294967295:TITLE (1)] (0.3,2.0 4.7x1.6)      50%
+  PICTURE (13)           Google Shape;299;p39                        (5.4,-0.6 4.6x6.3)     
+
+--- slide 37  layout='BLANK'
+  PICTURE (13)           Google Shape;304;p40                        (5.1,-0.5 4.6x6.1)     
+  PICTURE (13)           Google Shape;305;p40                        (0.0,0.0 10.0x5.6)     
+  TEXT_BOX (17)          Google Shape;306;p40                        (0.7,0.8 3.8x4.0)      Simple quote or statement goes here. Ideally limit to four or five lin
+
+--- slide 38  layout='BLANK'
+  PICTURE (13)           Google Shape;311;p41                        (5.1,-0.5 4.6x6.1)     
+  PICTURE (13)           Google Shape;312;p41                        (0.0,0.0 10.0x5.6)     
+  TEXT_BOX (17)          Google Shape;313;p41                        (0.7,0.8 3.8x4.0)      Single line title / Simple quote or statement goes here. Ideally limit
+
+--- slide 39  layout='BLANK'
+  PICTURE (13)           Google Shape;318;p42                        (5.1,-0.5 4.6x6.1)     
+  PICTURE (13)           Google Shape;319;p42                        (0.0,0.0 10.0x5.6)     
+  TEXT_BOX (17)          Google Shape;320;p42                        (0.7,0.8 3.8x4.0)      Title goes here, can be two lines / Simple quote or statement goes her
+
+--- slide 40  layout='BLANK'
+  PICTURE (13)           Google Shape;325;p43                        (5.1,-0.5 4.6x6.1)     
+  PICTURE (13)           Google Shape;326;p43                        (0.0,0.0 10.0x5.6)     
+  TEXT_BOX (17)          Google Shape;327;p43                        (0.7,0.7 3.8x1.1)      Single line title
+  TEXT_BOX (17)          Google Shape;328;p43                        (0.7,1.5 3.7x2.9)      Bullet one goes here / Bullet two goes here / Bullet three goes here /
+
+--- slide 41  layout='BLANK'
+  PICTURE (13)           Google Shape;333;p44                        (5.1,-0.5 4.6x6.1)     
+  PICTURE (13)           Google Shape;334;p44                        (0.0,0.0 10.0x5.6)     
+  TEXT_BOX (17)          Google Shape;335;p44                        (0.7,0.7 3.8x1.1)      Title goes here, can be two lines
+  TEXT_BOX (17)          Google Shape;336;p44                        (0.7,2.0 3.8x2.9)      Bullet one goes here / Bullet two goes here / Bullet three goes here /
+
+--- slide 42  layout='BLANK'
+  PICTURE (13)           Google Shape;341;p45                        (0.0,-0.0 10.0x5.6)    
+  AUTO_SHAPE (1)         Google Shape;342;p45                        (0.4,2.2 5.3x3.0)      Quote or short text goes here, adjust box size to match content / Name
+  PICTURE (13)           Google Shape;343;p45                        (0.4,0.5 4.1x1.3)      
+  PICTURE (13)           Google Shape;344;p45                        (5.4,-0.6 4.6x0.6)     
+  TEXT_BOX (17)          Google Shape;345;p45                        (1.1,1.4 1.1x0.3)      Mauritius 2026
+  TEXT_BOX (17)          Google Shape;346;p45                        (1.0,0.6 1.1x0.5)      Track
+
+--- slide 43  layout='BLANK'
+  TEXT_BOX (17)          Google Shape;351;p46                        (1.3,2.2 7.4x1.0)      Charts
+
+--- slide 44  layout='BLANK'
+  AUTO_SHAPE (1)         Google Shape;356;p47                        (0.5,1.7 2.5x3.5)      Caption
+  AUTO_SHAPE (1)         Google Shape;357;p47                        (3.3,1.7 2.3x0.7)      Caption
+  AUTO_SHAPE (1)         Google Shape;358;p47                        (3.3,2.6 2.3x0.7)      Caption
+  AUTO_SHAPE (1)         Google Shape;359;p47                        (3.3,3.6 2.3x0.7)      Caption
+  AUTO_SHAPE (1)         Google Shape;360;p47                        (3.3,4.5 2.3x0.7)      Caption
+  AUTO_SHAPE (1)         Google Shape;361;p47                        (6.0,4.7 1.7x0.4)      Label
+  AUTO_SHAPE (1)         Google Shape;362;p47                        (6.0,4.1 1.7x0.4)      Label
+  AUTO_SHAPE (1)         Google Shape;363;p47                        (6.0,3.5 1.7x0.4)      Label
+  AUTO_SHAPE (1)         Google Shape;364;p47                        (6.0,2.9 1.7x0.4)      Label
+  AUTO_SHAPE (1)         Google Shape;365;p47                        (6.0,2.2 1.7x0.4)      Label
+  TEXT_BOX (17)          Google Shape;366;p47                        (0.5,1.2 1.5x0.5)      Large Box
+  TEXT_BOX (17)          Google Shape;367;p47                        (3.3,1.2 1.5x0.5)      Medium Box
+  TEXT_BOX (17)          Google Shape;368;p47                        (6.0,1.2 1.7x0.7)      Labels / Only use colored labels on corresponding medium box color (bl
+  TEXT_BOX (17)          Google Shape;369;p47                        (8.1,1.2 1.5x0.5)      Arrows
+  LINE (9)               Google Shape;370;p47                        (8.1,1.7 1.3x0.0)      
+  AUTO_SHAPE (1)         Google Shape;371;p47                        (0.3,0.3 9.2x0.7)      Chart Elements
+
+--- slide 45  layout='BLANK'
+  LINE (9)               Google Shape;376;p48                        (6.4,2.6 0.5x0.0)      
+  LINE (9)               Google Shape;377;p48                        (6.4,3.8 0.5x0.0)      
+  LINE (9)               Google Shape;378;p48                        (3.1,2.6 0.5x0.0)      
+  LINE (9)               Google Shape;379;p48                        (3.1,3.8 0.5x0.0)      
+  AUTO_SHAPE (1)         Google Shape;380;p48                        (0.4,1.2 2.7x3.9)      
+  AUTO_SHAPE (1)         Google Shape;381;p48                        (0.7,1.6 1.0x0.7)      Short Label
+  AUTO_SHAPE (1)         Google Shape;382;p48                        (1.9,1.6 1.0x0.7)      Short Label
+  AUTO_SHAPE (1)         Google Shape;383;p48                        (0.7,2.9 1.0x0.7)      Short Label
+  AUTO_SHAPE (1)         Google Shape;384;p48                        (1.9,2.9 1.0x0.7)      Short Label
+  AUTO_SHAPE (1)         Google Shape;385;p48                        (0.7,4.1 1.0x0.7)      Short Label
+  AUTO_SHAPE (1)         Google Shape;386;p48                        (1.9,4.1 1.0x0.7)      Short Label
+  AUTO_SHAPE (1)         Google Shape;387;p48                        (3.6,1.2 2.7x3.9)      
+  AUTO_SHAPE (1)         Google Shape;388;p48                        (3.9,1.6 1.0x0.7)      Short Label
+  AUTO_SHAPE (1)         Google Shape;389;p48                        (5.1,1.6 1.0x0.7)      Short Label
+  AUTO_SHAPE (1)         Google Shape;390;p48                        (3.9,2.9 1.0x0.7)      Short Label
+  AUTO_SHAPE (1)         Google Shape;391;p48                        (5.1,2.9 1.0x0.7)      Short Label
+  AUTO_SHAPE (1)         Google Shape;392;p48                        (3.9,4.1 1.0x0.7)      Short Label
+  AUTO_SHAPE (1)         Google Shape;393;p48                        (5.1,4.1 1.0x0.7)      Short Label
+  AUTO_SHAPE (1)         Google Shape;394;p48                        (6.9,1.2 2.7x3.9)      
+  AUTO_SHAPE (1)         Google Shape;395;p48                        (7.1,1.6 1.0x0.7)      Short Label
+  AUTO_SHAPE (1)         Google Shape;396;p48                        (8.4,1.6 1.0x0.7)      Short Label
+  AUTO_SHAPE (1)         Google Shape;397;p48                        (7.1,2.9 1.0x0.7)      Short Label
+  AUTO_SHAPE (1)         Google Shape;398;p48                        (8.4,2.9 1.0x0.7)      Short Label
+  AUTO_SHAPE (1)         Google Shape;399;p48                        (7.1,4.1 1.0x0.7)      Short Label
+  AUTO_SHAPE (1)         Google Shape;400;p48                        (8.4,4.1 1.0x0.7)      Short Label
+  AUTO_SHAPE (1)         Google Shape;401;p48                        (0.3,0.3 9.2x0.7)      Simple Chart
+
+--- slide 46  layout='BLANK'
+  AUTO_SHAPE (1)         Google Shape;406;p49                        (0.3,0.3 9.2x0.7)      All-Purpose Chart
+  AUTO_SHAPE (1)         Google Shape;407;p49                        (0.4,1.4 9.2x1.0)      Short Label
+  AUTO_SHAPE (1)         Google Shape;408;p49                        (6.8,3.3 2.8x0.4)      Step C
+  AUTO_SHAPE (1)         Google Shape;409;p49                        (3.6,3.3 2.8x0.4)      Step B
+  AUTO_SHAPE (1)         Google Shape;410;p49                        (0.4,3.3 2.8x0.4)      Step A
+  AUTO_SHAPE (1)         Google Shape;411;p49                        (5.2,4.3 2.8x0.4)      Step E
+  AUTO_SHAPE (1)         Google Shape;412;p49                        (1.9,4.3 2.8x0.4)      Step D
+  LINE (9)               Google Shape;413;p49                        (1.8,2.4 0.0x0.9)      
+  LINE (9)               Google Shape;414;p49                        (8.2,2.4 0.0x0.9)      
+  LINE (9)               Google Shape;415;p49                        (5.0,2.4 0.0x0.9)      
+  LINE (9)               Google Shape;416;p49                        (2.7,3.7 0.0x0.6)      
+  LINE (9)               Google Shape;417;p49                        (7.2,3.7 0.0x0.6)      
+
+--- slide 47  layout='BLANK'
+  AUTO_SHAPE (1)         Google Shape;422;p50                        (0.3,0.3 9.2x0.7)      Big Portfolio Chart
+  AUTO_SHAPE (1)         Google Shape;423;p50                        (5.1,1.2 2.1x0.4)      Label Three
+  AUTO_SHAPE (1)         Google Shape;424;p50                        (2.7,1.2 2.1x0.4)      Label Two
+  AUTO_SHAPE (1)         Google Shape;425;p50                        (0.4,1.2 2.1x0.4)      Label One
+  AUTO_SHAPE (1)         Google Shape;426;p50                        (7.5,1.2 2.1x0.4)      Label Four
+  AUTO_SHAPE (1)         Google Shape;427;p50                        (5.1,2.0 2.1x0.8)      Short Label
+  AUTO_SHAPE (1)         Google Shape;428;p50                        (5.1,3.1 2.1x0.8)      Short Label
+  AUTO_SHAPE (1)         Google Shape;429;p50                        (5.1,4.2 2.1x0.8)      Short Label
+  AUTO_SHAPE (1)         Google Shape;430;p50                        (7.5,2.0 2.1x0.8)      Short Label
+  AUTO_SHAPE (1)         Google Shape;431;p50                        (7.5,3.1 2.1x0.8)      Short Label
+  AUTO_SHAPE (1)         Google Shape;432;p50                        (7.5,4.2 2.1x0.8)      Short Label
+  AUTO_SHAPE (1)         Google Shape;433;p50                        (2.7,2.0 2.1x0.8)      Short Label
+  AUTO_SHAPE (1)         Google Shape;434;p50                        (2.7,3.1 2.1x0.8)      Short Label
+  AUTO_SHAPE (1)         Google Shape;435;p50                        (2.7,4.2 2.1x0.8)      Short Label
+  AUTO_SHAPE (1)         Google Shape;436;p50                        (0.4,2.0 2.1x0.8)      Short Label
+  AUTO_SHAPE (1)         Google Shape;437;p50                        (0.4,3.1 2.1x0.8)      Short Label
+  AUTO_SHAPE (1)         Google Shape;438;p50                        (0.4,4.2 2.1x0.8)      Short Label
+
+--- slide 48  layout='BLANK'
+  LINE (9)               Google Shape;443;p51                        (4.8,4.5 0.5x0.0)      
+  LINE (9)               Google Shape;445;p51                        (8.6,3.8 0.0x0.3)      
+  LINE (9)               Google Shape;448;p51                        (7.0,2.4 0.5x0.0)      
+  LINE (9)               Google Shape;449;p51                        (4.6,2.4 0.5x0.0)      
+  LINE (9)               Google Shape;450;p51                        (2.2,2.4 0.5x0.0)      
+  AUTO_SHAPE (1)         Google Shape;451;p51                        (0.3,0.3 9.2x0.7)      Process Chart
+  AUTO_SHAPE (1)         Google Shape;452;p51                        (5.1,1.2 2.1x0.4)      Column Label
+  AUTO_SHAPE (1)         Google Shape;453;p51                        (2.7,1.2 2.1x0.4)      Column Label
+  AUTO_SHAPE (1)         Google Shape;454;p51                        (0.4,1.2 2.1x0.4)      Column Label
+  AUTO_SHAPE (1)         Google Shape;455;p51                        (7.5,1.2 2.1x0.4)      Column Label
+  AUTO_SHAPE (1)         Google Shape;456;p51                        (7.6,2.0 1.9x0.8)      Caption / Two Lines
+  AUTO_SHAPE (1)         Google Shape;457;p51                        (2.8,2.0 1.9x0.8)      Caption / Two Lines
+  AUTO_SHAPE (1)         Google Shape;458;p51                        (5.2,2.0 1.9x0.8)      Caption / Two Lines
+  AUTO_SHAPE (1)         Google Shape;459;p51                        (0.5,2.0 1.9x0.8)      Caption / Two Lines
+  AUTO_SHAPE (1)         Google Shape;446;p51                        (7.6,3.0 1.9x0.8)      Caption / Two Lines
+  AUTO_SHAPE (1)         Google Shape;460;p51                        (0.5,3.0 1.9x0.8)      Caption / Two Lines
+  AUTO_SHAPE (1)         Google Shape;447;p51                        (7.6,4.1 1.9x0.8)      Caption / Two Lines
+  AUTO_SHAPE (1)         Google Shape;444;p51                        (2.8,4.1 1.9x0.8)      Caption / Two Lines
+  AUTO_SHAPE (1)         Google Shape;461;p51                        (5.2,4.1 1.9x0.8)      Caption / Two Lines
+  AUTO_SHAPE (1)         Google Shape;462;p51                        (0.5,4.1 1.9x0.8)      Caption / Two Lines
+  AUTO_SHAPE (1)         Google Shape;463;p51                        (5.2,3.5 1.9x0.4)      Group Label
+  LINE (9)               Google Shape;464;p51                        (1.4,2.8 0.0x0.3)      
+  LINE (9)               Google Shape;465;p51                        (1.4,3.8 0.0x0.3)      
+  LINE (9)               Google Shape;466;p51                        (8.6,2.8 0.0x0.3)      
+  LINE (9)               Google Shape;467;p51                        (2.4,4.5 0.4x0.0)      
+
+--- slide 49  layout='BLANK'
+  AUTO_SHAPE (1)         Google Shape;472;p52                        (0.3,0.3 9.2x0.7)      Flow-Style Chart
+  LINE (9)               Google Shape;473;p52                        (1.3,2.0 0.0x0.7)      
+  LINE (9)               Google Shape;476;p52                        (2.3,3.1 0.7x0.0)      
+  LINE (9)               Google Shape;478;p52                        (4.4,3.1 0.4x0.0)      
+  LINE (9)               Google Shape;480;p52                        (6.1,3.1 0.4x0.0)      
+  LINE (9)               Google Shape;482;p52                        (7.9,3.1 0.4x0.0)      
+  LINE (9)               Google Shape;484;p52                        (5.9,1.1 0.6x5.5)      
+  LINE (9)               Google Shape;486;p52                        (1.9,3.7 1.5x0.4)      
+  AUTO_SHAPE (1)         Google Shape;487;p52                        (1.9,2.2 1.5x0.3)      Bridge Caption
+  AUTO_SHAPE (1)         Google Shape;488;p52                        (3.9,2.2 1.4x0.3)      Bridge Caption
+  AUTO_SHAPE (1)         Google Shape;489;p52                        (5.6,2.2 1.4x0.3)      Bridge Caption
+  AUTO_SHAPE (1)         Google Shape;490;p52                        (7.4,2.2 1.4x0.3)      Bridge Caption
+  LINE (9)               Google Shape;491;p52                        (4.1,4.5 0.6x0.0)      
+  LINE (9)               Google Shape;493;p52                        (6.1,4.5 0.4x0.0)      
+  LINE (9)               Google Shape;495;p52                        (7.9,4.5 0.4x0.0)      
+  AUTO_SHAPE (1)         Google Shape;497;p52                        (4.0,4.3 0.6x0.3)      No
+  AUTO_SHAPE (1)         Google Shape;474;p52                        (0.4,1.2 1.9x0.8)      Start
+  AUTO_SHAPE (1)         Google Shape;475;p52                        (0.4,2.7 1.9x0.8)      Two or three line caption
+  AUTO_SHAPE (1)         Google Shape;477;p52                        (3.0,2.7 1.4x0.8)      Step A
+  AUTO_SHAPE (1)         Google Shape;479;p52                        (4.8,2.7 1.4x0.8)      Step B
+  AUTO_SHAPE (1)         Google Shape;481;p52                        (6.5,2.7 1.4x0.8)      Step C
+  AUTO_SHAPE (1)         Google Shape;483;p52                        (8.3,2.7 1.4x0.8)      Step D
+  AUTO_SHAPE (1)         Google Shape;492;p52                        (4.8,4.1 1.4x0.8)      Step E
+  AUTO_SHAPE (1)         Google Shape;494;p52                        (6.5,4.1 1.4x0.8)      Step F
+  AUTO_SHAPE (1)         Google Shape;496;p52                        (8.3,4.1 1.4x0.8)      End
+  AUTO_SHAPE (1)         Google Shape;485;p52                        (2.8,4.1 1.4x0.8)      Decision Node?
+
+--- slide 50  layout='BLANK'
+  FREEFORM (5)           Google Shape;502;p53                        (1.0,2.7 8.0x0.4)      
+  AUTO_SHAPE (1)         Google Shape;503;p53                        (0.3,0.3 9.2x0.7)      Group Chart
+  AUTO_SHAPE (1)         Google Shape;504;p53                        (0.4,1.2 1.3x1.5)      Short Label
+  AUTO_SHAPE (1)         Google Shape;505;p53                        (2.0,1.2 1.3x1.5)      Short Label
+  AUTO_SHAPE (1)         Google Shape;506;p53                        (3.5,1.2 1.3x1.5)      Short Label
+  AUTO_SHAPE (1)         Google Shape;507;p53                        (5.1,1.2 1.3x1.5)      Short Label
+  AUTO_SHAPE (1)         Google Shape;508;p53                        (6.7,1.2 1.3x1.5)      Short Label
+  AUTO_SHAPE (1)         Google Shape;509;p53                        (8.3,1.2 1.3x1.5)      Short Label
+  AUTO_SHAPE (1)         Google Shape;510;p53                        (4.3,3.6 1.4x1.5)      Short Label
+  LINE (9)               Google Shape;511;p53                        (5.0,3.1 0.0x0.5)      
+
+--- slide 51  layout='BLANK'
+  LINE (9)               Google Shape;516;p54                        (5.0,2.7 0.0x0.3)      
+  LINE (9)               Google Shape;517;p54                        (4.7,4.0 2.6x0.4)      
+  LINE (9)               Google Shape;518;p54                        (7.9,4.1 0.2x0.3)      
+  LINE (9)               Google Shape;519;p54                        (2.7,4.0 0.6x0.3)      
+  LINE (9)               Google Shape;520;p54                        (2.7,4.0 2.5x0.4)      
+  LINE (9)               Google Shape;521;p54                        (2.3,4.0 1.6x0.4)      
+  LINE (9)               Google Shape;522;p54                        (6.1,4.0 1.5x0.4)      
+  LINE (9)               Google Shape;523;p54                        (1.6,2.7 0.0x0.3)      
+  LINE (9)               Google Shape;524;p54                        (8.4,2.7 0.0x0.3)      
+  LINE (9)               Google Shape;525;p54                        (1.1,2.0 0.0x0.3)      
+  LINE (9)               Google Shape;526;p54                        (3.1,2.0 0.0x0.3)      
+  LINE (9)               Google Shape;527;p54                        (5.0,2.0 0.0x0.3)      
+  LINE (9)               Google Shape;528;p54                        (6.9,2.0 0.0x0.3)      
+  LINE (9)               Google Shape;529;p54                        (8.8,2.0 0.0x0.3)      
+  AUTO_SHAPE (1)         Google Shape;530;p54                        (0.3,0.3 9.2x0.7)      Process Chart
+  AUTO_SHAPE (1)         Google Shape;531;p54                        (0.4,1.2 1.6x0.8)      A
+  AUTO_SHAPE (1)         Google Shape;532;p54                        (2.3,1.2 1.6x0.8)      B
+  AUTO_SHAPE (1)         Google Shape;533;p54                        (4.2,1.2 1.6x0.8)      C
+  AUTO_SHAPE (1)         Google Shape;534;p54                        (6.1,1.2 1.6x0.8)      D
+  AUTO_SHAPE (1)         Google Shape;535;p54                        (8.1,1.2 1.6x0.8)      E
+  AUTO_SHAPE (1)         Google Shape;536;p54                        (0.4,2.3 9.2x0.4)      Layer One
+  AUTO_SHAPE (1)         Google Shape;537;p54                        (0.4,3.1 2.4x1.0)      Item A
+  AUTO_SHAPE (1)         Google Shape;538;p54                        (3.8,3.1 2.4x1.0)      Item B
+  AUTO_SHAPE (1)         Google Shape;539;p54                        (7.2,3.1 2.4x1.0)      Item C
+  AUTO_SHAPE (1)         Google Shape;540;p54                        (0.6,4.4 1.7x0.4)      Short Label
+  AUTO_SHAPE (1)         Google Shape;541;p54                        (3.0,4.4 1.7x0.4)      Short Label
+  AUTO_SHAPE (1)         Google Shape;542;p54                        (5.3,4.4 1.7x0.4)      Short Label
+  AUTO_SHAPE (1)         Google Shape;543;p54                        (7.7,4.4 1.7x0.4)      Short Label
+
+--- slide 52  layout='BLANK'
+  LINE (9)               Google Shape;548;p55                        (1.5,3.1 0.0x0.3)      
+  LINE (9)               Google Shape;549;p55                        (4.4,3.0 0.0x0.6)      
+  LINE (9)               Google Shape;550;p55                        (2.0,2.3 0.0x0.5)      
+  LINE (9)               Google Shape;551;p55                        (3.9,1.6 0.0x1.4)      
+  LINE (9)               Google Shape;552;p55                        (5.5,2.3 0.0x0.5)      
+  LINE (9)               Google Shape;553;p55                        (7.5,1.6 0.0x1.4)      
+  AUTO_SHAPE (1)         Google Shape;554;p55                        (0.3,0.3 9.2x0.7)      Chart Title
+  PICTURE (13)           Google Shape;555;p55                        (0.0,2.1 9.6x1.6)      
+  TEXT_BOX (17)          Google Shape;556;p55                        (0.9,2.6 1.3x0.5)      2012
+  TEXT_BOX (17)          Google Shape;557;p55                        (2.4,2.6 1.3x0.5)      2014
+  TEXT_BOX (17)          Google Shape;558;p55                        (3.9,2.6 1.3x0.5)      2016
+  TEXT_BOX (17)          Google Shape;559;p55                        (5.4,2.6 1.3x0.5)      2018
+  TEXT_BOX (17)          Google Shape;560;p55                        (6.9,2.6 1.3x0.5)      2020
+  AUTO_SHAPE (1)         Google Shape;561;p55                        (3.7,1.0 1.6x0.7)      Caption 3 / Two Lines
+  AUTO_SHAPE (1)         Google Shape;562;p55                        (7.4,1.0 1.6x0.7)      Caption 5 / Two Lines
+  AUTO_SHAPE (1)         Google Shape;563;p55                        (1.8,1.7 1.6x0.7)      Caption 2 / Two Lines
+  AUTO_SHAPE (1)         Google Shape;564;p55                        (5.3,1.7 1.6x0.7)      Caption 4 / Two Lines
+  LINE (9)               Google Shape;565;p55                        (3.3,3.1 0.0x1.2)      
+  AUTO_SHAPE (1)         Google Shape;566;p55                        (3.1,4.2 1.6x0.7)      Caption 7 / Two Lines
+  AUTO_SHAPE (1)         Google Shape;567;p55                        (1.3,3.4 1.6x0.7)      Caption 6 / Two Lines
+  AUTO_SHAPE (1)         Google Shape;568;p55                        (4.3,3.4 1.6x0.7)      Caption 8 / Two Lines
+  LINE (9)               Google Shape;569;p55                        (6.1,3.1 0.0x1.2)      
+  AUTO_SHAPE (1)         Google Shape;570;p55                        (5.9,4.2 1.6x0.7)      Caption 9 / Two Lines
+
+--- slide 53  layout='BLANK'
+  TEXT_BOX (17)          Google Shape;575;p56                        (1.3,2.2 7.4x1.0)      Device Frames
+
+--- slide 54  layout='BLANK'
+  TEXT_BOX (17)          Google Shape;580;p57                        (0.1,0.2 1.8x0.3)      WIREFRAME - MOBILE
+  PICTURE (13)           Google Shape;581;p57                        (1.7,0.7 1.9x4.2)      
+  PICTURE (13)           Google Shape;582;p57                        (4.0,3.0 4.2x1.9)      
+  AUTO_SHAPE (1)         Google Shape;583;p57                        (1.1,1.2 1.5x0.5)      Right click and “replace image”
+  AUTO_SHAPE (1)         Google Shape;584;p57                        (7.3,3.7 1.5x0.5)      Right click and “replace image”
+
+--- slide 55  layout='BLANK'
+  TEXT_BOX (17)          Google Shape;589;p58                        (0.1,0.2 1.8x0.3)      WIREFRAME - TABLET
+  PICTURE (13)           Google Shape;590;p58                        (4.5,1.4 4.5x2.8)      
+  PICTURE (13)           Google Shape;591;p58                        (1.4,0.7 2.6x4.1)      
+  AUTO_SHAPE (1)         Google Shape;592;p58                        (0.9,1.6 1.5x0.5)      Right click and “replace image”
+  AUTO_SHAPE (1)         Google Shape;593;p58                        (7.9,1.6 1.5x0.5)      Right click and “replace image”
+
+--- slide 56  layout='BLANK'
+  PICTURE (13)           Google Shape;598;p59                        (3.7,1.5 2.6x2.6)      
+  FREEFORM (5)           Google Shape;599;p59                        (3.7,1.5 2.6x2.6)      
+  TEXT_BOX (17)          Google Shape;600;p59                        (0.1,0.2 1.8x0.3)      WIREFRAME - WEAR OS
+  FREEFORM (5)           Google Shape;601;p59                        (4.4,0.3 1.3x1.4)      
+  FREEFORM (5)           Google Shape;602;p59                        (4.4,3.9 1.3x1.4)      
+  PICTURE (13)           Google Shape;603;p59                        (3.7,1.5 2.6x2.6)      
+  AUTO_SHAPE (1)         Google Shape;604;p59                        (5.6,3.0 1.5x0.5)      Right click and “replace image”
+
+--- slide 57  layout='BLANK'
+  PICTURE (13)           Google Shape;609;p60                        (4.2,2.7 4.3x2.1)      
+  TEXT_BOX (17)          Google Shape;610;p60                        (0.1,0.2 1.8x0.3)      DEVICE FRAME - PIXEL 8
+  PICTURE (13)           Google Shape;611;p60                        (1.4,0.7 2.0x4.1)      
+  PICTURE (13)           Google Shape;612;p60                        (1.5,0.8 1.8x4.0)      
+  PICTURE (13)           Google Shape;613;p60                        (4.3,2.8 4.1x1.9)      
+  AUTO_SHAPE (1)         Google Shape;614;p60                        (1.1,1.2 1.5x0.5)      Right click and “replace image”
+  AUTO_SHAPE (1)         Google Shape;615;p60                        (7.3,3.7 1.5x0.5)      Right click and “replace image”
+
+--- slide 58  layout='BLANK'
+  TEXT_BOX (17)          Google Shape;620;p61                        (0.1,0.2 1.8x0.3)      DEVICE FRAME - PIXEL FOLD
+  PICTURE (13)           Google Shape;621;p61                        (4.3,1.0 4.2x3.7)      
+  PICTURE (13)           Google Shape;622;p61                        (4.4,1.2 4.0x3.3)      
+  PICTURE (13)           Google Shape;623;p61                        (1.2,1.0 2.2x3.7)      
+  PICTURE (13)           Google Shape;624;p61                        (1.4,1.1 1.8x3.5)      
+  AUTO_SHAPE (1)         Google Shape;625;p61                        (0.9,1.6 1.5x0.5)      Right click and “replace image”
+  AUTO_SHAPE (1)         Google Shape;626;p61                        (7.3,1.6 1.5x0.5)      Right click and “replace image”
+
+--- slide 59  layout='BLANK'
+  TEXT_BOX (17)          Google Shape;631;p62                        (0.1,0.2 1.8x0.3)      DEVICE FRAME - iPHONE 14
+  PICTURE (13)           Google Shape;632;p62                        (1.8,1.0 1.7x3.8)      
+  PICTURE (13)           Google Shape;633;p62                        (1.5,0.8 2.3x4.2)      
+  PICTURE (13)           Google Shape;634;p62                        (5.7,1.5 2.0x4.4)      
+  PICTURE (13)           Google Shape;635;p62                        (5.5,1.3 2.6x4.9)      
+  AUTO_SHAPE (1)         Google Shape;636;p62                        (1.1,1.5 1.5x0.5)      Right click and “replace image”
+  AUTO_SHAPE (1)         Google Shape;637;p62                        (7.9,2.9 1.5x0.5)      Right click and “replace image”
+
+--- slide 60  layout='BLANK'
+  TEXT_BOX (17)          Google Shape;642;p63                        (0.1,0.2 1.8x0.3)      DEVICE FRAME - TABLET
+  PICTURE (13)           Google Shape;643;p63                        (4.3,1.5 4.6x3.0)      
+  PICTURE (13)           Google Shape;644;p63                        (4.5,1.7 4.2x2.6)      
+  PICTURE (13)           Google Shape;645;p63                        (0.7,1.0 2.6x4.0)      
+  PICTURE (13)           Google Shape;646;p63                        (0.9,1.2 2.3x3.7)      
+  AUTO_SHAPE (1)         Google Shape;647;p63                        (0.5,1.5 1.5x0.5)      Right click and “replace image”
+  AUTO_SHAPE (1)         Google Shape;648;p63                        (7.7,3.5 1.5x0.5)      Right click and “replace image”
+
+--- slide 61  layout='BLANK'
+  PICTURE (13)           Google Shape;653;p64                        (1.5,-0.0 6.8x5.6)     
+  PICTURE (13)           Google Shape;654;p64                        (2.9,0.9 3.9x3.9)      
+  TEXT_BOX (17)          Google Shape;655;p64                        (0.1,0.2 1.8x0.3)      DEVICE FRAME - WEAR OS
+  AUTO_SHAPE (1)         Google Shape;656;p64                        (2.1,2.9 1.5x0.5)      Right click and “replace image”
+
+--- slide 62  layout='BLANK'
+  TEXT_BOX (17)          Google Shape;661;p65                        (0.1,0.2 3.0x0.3)      DEVICE FRAME - CHROMEBOOK PLUS
+  PICTURE (13)           Google Shape;662;p65                        (1.3,0.5 7.4x4.8)      
+  PICTURE (13)           Google Shape;663;p65                        (2.7,1.3 4.5x2.5)      
+  AUTO_SHAPE (1)         Google Shape;664;p65                        (1.9,1.7 1.5x0.5)      Right click and “replace image”
+
+--- slide 63  layout='BLANK'
+  TEXT_BOX (17)          Google Shape;669;p66                        (0.1,0.2 3.0x0.3)      DEVICE FRAME - PIXELBOOK GO
+  PICTURE (13)           Google Shape;670;p66                        (1.3,0.8 7.3x4.4)      
+  PICTURE (13)           Google Shape;671;p66                        (2.5,1.0 5.1x2.9)      
+  AUTO_SHAPE (1)         Google Shape;672;p66                        (1.9,1.7 1.5x0.5)      Right click and “replace image”

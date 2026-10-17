@@ -1,0 +1,10 @@
+node_modules
+.env
+.env.local
+.DS_Store
+build
+dist
+
+
+# local dev server logs
+backend/backend.log

@@ -1,0 +1,20 @@
+jarviscore-framework
+fastapi
+uvicorn
+requests
+python-dotenv
+pydantic
+# Pinned to a tested version. 1.93.0 verified 2026-07-19: full pytest suite,
+# mock-response tools= calls (streaming + blocking), and a live studio-chat
+# stream (the tools= path that crashed on ~1.9x-era builds). Before any bump,
+# rerun that pass — tests, then one live call through studio chat.
+litellm==1.93.0
+# Explicit orjson stays as a guard: litellm has imported it from proxy
+# internals on tools= calls before, while only bundling it in the [proxy] extra.
+orjson
+weasyprint
+jinja2
+pymupdf
+google-cloud-storage
+google-cloud-firestore
+trafilatura

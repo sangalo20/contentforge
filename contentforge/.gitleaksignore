@@ -1,0 +1,6 @@
+# gitleaks allowlist — fingerprints of known false positives.
+#
+# The Firebase Web SDK "API key" is a public client-side identifier (not a
+# secret). It is embedded in the browser bundle by design and must be present
+# at build time. See frontend/.env.production and its .env.example note.
+frontend/.env.production:gcp-api-key:5

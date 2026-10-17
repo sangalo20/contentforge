@@ -1,0 +1,278 @@
+{
+  "pack": "Joe Downs Content Skill Pack",
+  "purpose": "Encoded rules, voice, workflows and quality gates to engrain into the Content Forge app.",
+  "skill_count": 22,
+  "read_order": [
+    "README.md",
+    "manifest.json",
+    "skills/<name>/SKILL.md",
+    "skills/<name>/references/*.md"
+  ],
+  "quality_gate_order": [
+    "writing-craft",
+    "humanizer",
+    "truth/provenance",
+    "voice",
+    "cta"
+  ],
+  "skills": [
+    {
+      "name": "audience-comment-replies",
+      "path": "skills/audience-comment-replies/",
+      "description": "Draft replies to INBOUND audience comments, DMs, and questions in Joe Downs' voice across any platform (Instagram, LinkedIn, YouTube, Facebook, podcast apps). Trigger when Joe pastes a listener/viewer comment or question and asks for \"a reply in Joe's voice\", \"answer this comment\", \"reply to this fan/listener\", \"respond to this for IG/YouTube\", or \"what do I say back to this\". This is INBOUND fan/audience engagement (someone reached out to Joe) — NOT outbound peer-comment hunting on strangers' posts (that's linkedin-engage), NOT Joe's own broadcast posts (linkedin-posts / joe-from-podcasts / the podcast skills). Owns the voice rules, the humanizer-verification gate, and recurring response patterns (e.g. episode-topic requests).",
+      "files": [
+        "SKILL.md"
+      ]
+    },
+    {
+      "name": "brand-asset-organization",
+      "path": "skills/brand-asset-organization/",
+      "description": "Clean up, file, and standard-name Joe Downs' brand/content files scattered across the machine (Downloads, Desktop, Home) INTO the canonical BrandAssets library. Trigger on asks like \"clean up my files\", \"organize the posters/content\", \"everything is everywhere, sort it\", \"file this into the right brand folder\", \"give all posters a proper naming system\", or any request to tidy brand assets. Owns the SAFE filing procedure (classify by brand → build a reversible manifest → confirm → move, never overwrite) and the cross-brand file-naming convention. Companion to brand-poster-design (which OWNS poster creation + naming at generation time); this skill files EXISTING scattered assets and enforces the same convention retroactively.",
+      "files": [
+        "SKILL.md",
+        "scripts/plan_brand_moves.py"
+      ]
+    },
+    {
+      "name": "brand-knowledge-hub",
+      "path": "skills/brand-knowledge-hub/",
+      "description": "Build and extend Joe Downs' Brand Knowledge Hub in Notion — the multi-brand \"factory\" that turns raw Google Drive material (podcast transcripts, captions, notes) into structured Notion finished goods (reusable KNOWLEDGE + publishable CONTENT). Trigger when asked to \"add to the knowledge hub\", \"create a knowledge/content database\", \"file this into Notion\", \"add a brand to the hub\", \"track content approval\", \"repurpose this post to other platforms\", \"connect Canva / another MCP server\", or any work extending the Hub's databases. Covers the architecture, the Notion-MCP database-building quirks, the per-piece approval model, and the MCP servers behind the factory (Notion = store, Canva = design/repurpose engine). Built on the Notion + Canva MCP servers (connected to the joeagent profile) and the google-workspace CLI for reading Drive source docs.",
+      "files": [
+        "SKILL.md",
+        "references/asset-naming.md",
+        "references/brand-assets.md",
+        "references/canva-poster-build.md",
+        "references/episode-deep-rebuild.md",
+        "references/episode-depth-rebuild.md",
+        "references/episode-ingestion.md",
+        "references/live-ids.md",
+        "references/mcp-server-connections.md",
+        "references/memory-discipline.md",
+        "references/metricool-media-and-auth.md",
+        "references/notion-mcp-db-patterns.md",
+        "references/system-audit.md",
+        "scripts/metricool_token_keeper.py"
+      ]
+    },
+    {
+      "name": "brand-poster-design",
+      "path": "skills/brand-poster-design/",
+      "description": "Design on-brand social posters/graphics for Joe Downs' brands (Successful Idiots, Storage Moguls, Joe Downs, StorPro, Belrose) and attach them to Metricool drafts. Trigger when asked to \"make a poster for this post\", \"create a graphic for [brand]\", \"design a poster/quote card/thumbnail\", \"style my Metricool SmartLink / bio link\", or \"add an image to the [SI/SM/...] draft\". Renders self-contained HTML → PNG, saves under the BrandAssets convention, uploads to Cloudinary for a public URL, and attaches to the Metricool post via the API. Also covers account-art (profile pics, covers) and Metricool SmartLink/link-in-bio visual assets (UI-only). Companion to metricool-scheduling (scheduling) and brand-knowledge-hub (brand truth, asset naming, Cloudinary/auth refs).",
+      "files": [
+        "SKILL.md",
+        "references/batch-qa-and-voids.md",
+        "references/character-art-and-image-gen.md",
+        "references/design-principles-checklist.md",
+        "references/gif-animation-pipeline.md",
+        "references/hook-wrapped-real-clip.md",
+        "references/jd-batch-poster-generator.md",
+        "references/jd-design-system.md",
+        "references/jd-motion-graphics.md",
+        "references/jd-motion-remotion.md",
+        "references/jd-poster-types-and-photos.md",
+        "references/jd-remotion-pipeline.md",
+        "references/multipage-ebook-pdf.md",
+        "references/remotion-cinematic-reel.md",
+        "references/remotion-multiformat-aspect-aware.md",
+        "references/remotion-podcast-audiogram.md",
+        "references/remotion-threejs-3d.md",
+        "references/si-design-system.md",
+        "references/sm-educational-poster.md",
+        "references/smartlink-bio-assets.md",
+        "references/stories-9x16-playbook.md",
+        "references/stories-9x16-reflow.md",
+        "references/stories-pipeline.md",
+        "references/style-recipes.md",
+        "references/svg-diagram-legibility.md",
+        "references/threejs-remotion-and-cinematic-motion.md",
+        "scripts/gemini_char_cutout.py",
+        "scripts/gen_story_simple.py",
+        "scripts/render_formats.py",
+        "scripts/storyify.py"
+      ]
+    },
+    {
+      "name": "content-tracker",
+      "path": "skills/content-tracker/",
+      "description": "Joe Downs' SINGLE source of truth for 'what content do we have' — a brand-first Google Sheet tracker + per-generation review docs. Trigger on 'what content do we have', 'what's been processed/scheduled/published', 'which episodes are done', 'update the tracker', 'make the review doc for [episode/batch]', or any status question about content across the 4 brands. The Sheet is the FAST human-readable view (check it FIRST before digging through Notion/Metricool); Notion stays the backend system-of-record. Each GENERATION (episode/batch) gets its OWN review doc with all pieces + visuals + dates, linked from the Sheet.",
+      "files": [
+        "SKILL.md"
+      ]
+    },
+    {
+      "name": "cron-nudge-agents",
+      "path": "skills/cron-nudge-agents/",
+      "description": "How a PROMPT-BASED cron \"nudge/reminder\" agent should BEHAVE when it fires in this profile — emit the formatted reminder as the final response and let the cron system auto-deliver it (to Slack, etc.). Trigger whenever a session is running as a scheduled cron job whose task is to send a reminder/checklist/nudge (e.g. \"Metricool Morning Check\", a daily pre-flight, a report-deadline enforcer), or when building/editing such a job's PROMPT. Owns the auto-delivery model, the weekday/{Day} gating, and the [SILENT] rule. NOT about getting a .sh SCRIPT to launch (that's windows-cron-shell-scripts), NOT about the content those reminders reference (Metricool work = metricool-scheduling).",
+      "files": [
+        "SKILL.md",
+        "references/slack-dm-via-bot-token.md"
+      ]
+    },
+    {
+      "name": "joe-cta",
+      "path": "skills/joe-cta/",
+      "description": "Write Joe Downs' SPOKEN call-to-action (CTA) for short-form video (YouTube Shorts, Instagram Reels, Facebook Reels). Trigger when asked to \"write a CTA for Joe's short\", \"fix the CTA on this script\", \"write a short to drive people to Storage 101\", \"give me the ending for this Reel\", or \"the CTA isn't clear enough\". Owns the CTA TAIL craft, a clear beginner-proof close that names the free Monday-night Storage 101 call, removes risk, gives ONE literal action, and keeps Joe in invite/teacher voice (never salesy). Pairs with the hook/angle library. NOT for written social captions (use linkedin-posts / the podcast skills), NOT for inbound comment replies (use audience-comment-replies), NOT for scheduling/publishing (use metricool-scheduling).",
+      "files": [
+        "SKILL.md",
+        "references/storage-stats.md",
+        "scripts/build_playbook_docx.py"
+      ]
+    },
+    {
+      "name": "joe-from-podcasts",
+      "path": "skills/joe-from-podcasts/",
+      "description": "Transform insights from the Successful Idiots OR Storage Moguls podcasts into Joe Downs' PERSONAL LinkedIn posts — extract the idea, drop the episode reference, write it as Joe's own lived observation. Trigger when asked to \"write Joe's LinkedIn post from the SI/SM episode about X\", \"turn this podcast insight into a post for Joe\", \"Joe's personal post based on [guest/topic]\", \"create a Joe post from the podcast content — don't make it sound like a promo\", or when storagemoguls-podcast / successfulidiots-podcast output an \"ADDITIONAL ANGLES FOR joe-from-podcasts\" section. Depends on successfulidiots-podcast and storagemoguls-podcast. NOT for brand-account posts (use those skills) and NOT for Joe's non-podcast storage education (use linkedin-posts).",
+      "files": [
+        "SKILL.md",
+        "references/fabrication-audit-and-provenance.md",
+        "references/joe-real-biography.md"
+      ]
+    },
+    {
+      "name": "joe-shortform-topics",
+      "path": "skills/joe-shortform-topics/",
+      "description": "Turn a Storage Moguls (or other Joe Downs) podcast episode into 3-5 SHORT-FORM TALKING TOPICS that Joe records himself on camera for Instagram, TikTok and Facebook (same content to all three). NOT scripts, NOT clever titles — each topic is a CONTEXT-FIRST talking prompt Joe riffs on freely, plus a strong two-step CTA. Trigger when Joe asks for \"short-form content ideas / topics / questions I can record\", \"promo videos I can talk to\", \"give me things to talk about from this episode for Reels/TikTok\", or \"topics for me to record\". This is the ROADSHOW-STYLE Joe-on-camera lane — distinct from the hook-wrapped real-clip promo videos (built with ffmpeg from /Promos footage) and the educational posters. Output is a Word doc of topics.",
+      "files": [
+        "SKILL.md",
+        "templates/gen_shortform_doc.py"
+      ]
+    },
+    {
+      "name": "joe-social-planner",
+      "path": "skills/joe-social-planner/",
+      "description": "Place/slot Joe Downs' social content into a PRESCRIBED weekly structure — the call-aligned or theme-aligned week he's given. Trigger on asks like 'plan Joe's posts for next week', 'we have these call topics for Mon–Fri, fit content to them', 'slot this week's posts', 'align the posts to the week', 'which post goes on which day', or when content exists but isn't organized into the week's required slots. This is PLACEMENT/scheduling-structure, distinct from CREATION (posts-engine / linkedin-posts) and from publishing (metricool-scheduling). It reconciles existing content against required slots, fills gaps via posts-engine, and respects each day's call/theme alignment + the CTA rules. Starts Joe-socials-specific (Storage 101 / call days / lead-magnet days) but is built to extend to other brands.",
+      "files": [
+        "SKILL.md"
+      ]
+    },
+    {
+      "name": "linkedin-engage",
+      "path": "skills/linkedin-engage/",
+      "description": "Surface 10–15 high-relevance LinkedIn posts from Joe Downs' target audience and draft a peer-voice comment for each, then route them into a Google Doc review batch for Joe to approve and post himself. Trigger when asked to \"find posts for Joe to comment on\", \"run the LinkedIn engagement batch\", \"linkedin-engage\", \"draft LinkedIn comments\", or \"who should Joe engage with today\". Sourcing is browser-assisted, logged in as Joe (no public API exists for feed scraping). Comments are replies — NO hooks, NO CTAs, NO link-drops. Joe posts approved comments himself. Companion to linkedin-posts (generation) and linkedinreview (post approval).",
+      "files": [
+        "SKILL.md",
+        "scripts/build_engage_doc.py",
+        "scripts/fetch_linkedin_posts.py",
+        "scripts/run_batch.py"
+      ]
+    },
+    {
+      "name": "linkedin-posts",
+      "path": "skills/linkedin-posts/",
+      "description": "Generate a daily batch of 6 LinkedIn posts in Joe Downs' authentic voice for Storage Moguls. Trigger when asked to \"generate today's LinkedIn posts\", \"write 6 posts for Joe\", \"create the daily LinkedIn batch\", or \"draft LinkedIn content for this week\". Fetches the live SM Content Tracker first, skips already-published topics, covers all six content themes, and enforces Joe's voice rules.",
+      "files": [
+        "SKILL.md",
+        "references/approval-pipeline.md",
+        "references/humanizing-joe-short-forms.md",
+        "scripts/create_review_doc.py"
+      ]
+    },
+    {
+      "name": "linkedin-search-params",
+      "path": "skills/linkedin-search-params/",
+      "description": "Generate TARGETED, brand-aware LinkedIn search URLs from Joe Downs' knowledge base instead of broad keyword searches. Builds two query families — PEOPLE search (find valuable investors / connections to grow, location-filtered) and CONTENT search (find posts worth engaging) — for each brand (Storage Moguls, Belrose Storage Group, Successful Idiots) and audience segment. Trigger when asked to \"build LinkedIn search params\", \"give me targeted searches\", \"find investors in <place>\", \"narrow down the LinkedIn searches\", \"search queries for <brand>\", or before a linkedin-engage run when broad terms return noise. Location uses verified geoUrn IDs; output URLs feed directly into the linkedin-engage fetch/run_batch scripts.",
+      "files": [
+        "SKILL.md",
+        "scripts/build_search_params.py"
+      ]
+    },
+    {
+      "name": "linkedinreview",
+      "path": "skills/linkedinreview/",
+      "description": "linkedinReview — the approval-pipeline companion to the linkedin-posts generator. Takes generated LinkedIn posts and places them into a weekly Google Doc (one sectioned article per post, with a clickable table of contents and page breaks) for external-partner review. Trigger when asked to \"linkedinReview\", \"put this week's posts into the review doc\", \"create the LinkedIn review doc\", \"send for approval\", or invoked alongside linkedin-posts. Owns ONLY the doc-creation + review-routing step so the generator stays untouched when the review process changes. Does NOT mark Notion — that happens only on Joe's explicit verbal approval after the partner signs off.",
+      "files": [
+        "SKILL.md",
+        "references/google-sheets-api-enable.md",
+        "scripts/build_review_doc.py",
+        "scripts/build_social_review_doc.py",
+        "scripts/build_tracking_sheet.py"
+      ]
+    },
+    {
+      "name": "metricool-scheduling",
+      "path": "skills/metricool-scheduling/",
+      "description": "Schedule, draft, update, and analyze social posts across Joe Downs' brands via the Metricool MCP server. Trigger when asked to \"schedule a post\", \"list my Metricool brands\", \"draft a caption and schedule it\", \"post this to [Storage Moguls / StorPro / Successful Idiots / Joe Downs]\", \"best time to post\", \"pull Metricool analytics\", or \"create a flyer caption and put it on the calendar\". Covers the 4 connected brands and their IDs, the OAuth/connection model, the per-network media + character rules that the MCP enforces, and correct timezone handling. NOT for generating LinkedIn content from scratch (use linkedin-posts / joe-from-podcasts / the podcast skills) — this skill owns the SCHEDULING/PUBLISHING step once copy exists.",
+      "files": [
+        "SKILL.md",
+        "references/bridge-and-login-when-tools-down.md",
+        "references/cross-platform-unified-posting.md",
+        "references/mcp-http-bridge.md",
+        "references/per-platform-batch-scheduling.md",
+        "references/weekly-growth-analytics.md",
+        "scripts/mc_bridge.py"
+      ]
+    },
+    {
+      "name": "posts-engine",
+      "path": "skills/posts-engine/",
+      "description": "ORCHESTRATOR for creating Joe Downs' social posts end-to-end from a source, so no step in the chain gets forgotten. Trigger on natural asks like 'create Joe's posts from [source]', 'create the Storage Moguls posts from the podcast and Notion', 'make SM posts from this episode', 'create posts from the SM podcast + the Notion database', 'write Joe's posts from the SI episode'. Resolves brand + source (with sensible defaults: SM → podcast and/or Notion tracker; SI → podcast; Joe personal → either podcast as his own observation, or the SM tracker for storage education), then runs the full pipeline raw-material → final value: pull source → understanding → long form (LinkedIn/IG/FB) + short form (X) → brand voice → writing-craft gate → humanizer gate → CTA → output (optional poster/schedule). NOT a writer itself — it CHAINS the existing skills so one request fires all the right ones. LinkedIn is primary; long form where the platform supports it, short form for X.",
+      "files": [
+        "SKILL.md"
+      ]
+    },
+    {
+      "name": "storage100-beginner-content",
+      "path": "skills/storage100-beginner-content/",
+      "description": "Turn Joe Downs' Storage100 Knowledge Base (the per-episode docs, SIMPLIFIED/Part B sections) into beginner social content for Joe's personal brand, SEQUENCED BY LEARNING PROGRESSION — what to learn first because it makes everything after it simpler. Trigger on asks like 'create beginner content from the Storage 100 knowledge base', 'make social posts from the simplified episode notes', 'turn the KB into a learn-storage content series', 'content for beginners ordered by what to learn first'. Distinct from linkedin-posts (daily 6-theme batch off the Notion tracker) and posts-engine (podcast/tracker source): THIS pulls from the Storage100 KB simplified notes and orders by a teaching curriculum, not by theme rotation. Uses warm CTAs (joe-cta principle) and the writing-craft + humanizer + truth gates.",
+      "files": [
+        "SKILL.md",
+        "references/educational-poster-set.md",
+        "references/graphic-ebook-build.md",
+        "references/personal-day-series.md"
+      ]
+    },
+    {
+      "name": "storage100-knowledge-base",
+      "path": "skills/storage100-knowledge-base/",
+      "description": "Turn Joe Downs' video/podcast TRANSCRIPTS into a structured KNOWLEDGE BASE for later book/ebook authoring — NOT social content. Trigger when asked to \\\"build the Storage 100 database/knowledge base\\\", \\\"get understanding from these transcripts\\\", \\\"make notes from each episode for a book\\\", \\\"two versions: as-is and simplified\\\", \\\"create the [series] knowledge base\\\", or any ask to extract durable understanding + book notes from a transcript corpus. Owns: (1) the reliable transcript↔video MATCHING technique (filenames are unreliable — match by the day/episode number SPOKEN inside the transcript, then content-verify), and (2) the per-episode OUTPUT FORMAT Joe specified (one Google Doc per episode: As-Is understanding + Simplified-with-glossary + Book Notes), processed in batches of 5. Distinct from the content skills (linkedin-posts, the podcast skills, brand-knowledge-hub) which produce PUBLISHABLE posts; this produces a study/authoring asset. Uses the google-workspace CLI for Drive/Docs.",
+      "files": [
+        "SKILL.md",
+        "references/transcript-matching.md",
+        "scripts/make_docs.py",
+        "templates/episode-doc.txt"
+      ]
+    },
+    {
+      "name": "storagemoguls-podcast",
+      "path": "skills/storagemoguls-podcast/",
+      "description": "Generate ready-to-publish content for the Storage Moguls BRAND accounts (LinkedIn, Instagram, YouTube, Facebook) from podcast episodes in Google Drive. Trigger when asked to \"generate posts for Storage Moguls podcast episode X\", \"process the new SM podcast episode\", \"write captions for the SM promo video\", \"create content for the SM podcast brand accounts\", or \"what posts do we need for this Storage Moguls episode?\". Processes the episode's Captions/Posts doc and Transcript, cross-references Notion Moguls Operations Hub, adapts pre-written posts per platform, and extracts additional angles. Episode-specific brand content only — NOT Joe's personal page (use joe-from-podcasts), NOT Successful Idiots (use successfulidiots-podcast), and NOT broad SM education/promo posts (use linkedin-posts).",
+      "files": [
+        "SKILL.md",
+        "references/educational-posters.md",
+        "references/metricool-scheduling.md"
+      ]
+    },
+    {
+      "name": "successfulidiots-podcast",
+      "path": "skills/successfulidiots-podcast/",
+      "description": "Generate ready-to-publish content for the Successful Idiots BRAND accounts (LinkedIn, Instagram, YouTube) from podcast episodes in Google Drive. Trigger when asked to \"generate posts for Successful Idiots episode X\", \"process the new SI episode\", \"write captions for the SI promo video\", \"create content for the SI brand accounts\", or \"what posts do we need for this SI episode?\". Processes the episode's Captions/Posts doc and Transcript from the \"Successful Idiots\" Drive folder, adapts pre-written posts per platform, and extracts additional insight angles. Brand voice only — NOT Joe's personal page (use joe-from-podcasts) and NOT Storage Moguls (use storagemoguls-podcast).",
+      "files": [
+        "SKILL.md",
+        "references/canva-native-poster-build.md",
+        "references/caption-opener-and-scheduling-ep032.md",
+        "references/formatted-sheets-tracker.md",
+        "references/narrative-copy-strategy.md",
+        "references/notion-content-pieces-filing.md",
+        "references/plain-language-rules.md",
+        "references/poster-variety-and-inspiration.md"
+      ]
+    },
+    {
+      "name": "teams-meeting-pipeline",
+      "path": "skills/teams-meeting-pipeline/",
+      "description": "Operate the Teams meeting summary pipeline via Hermes CLI — summarize meetings, inspect pipeline status, replay jobs, manage Microsoft Graph subscriptions.",
+      "files": [
+        "SKILL.md"
+      ]
+    },
+    {
+      "name": "writing-craft",
+      "path": "skills/writing-craft/",
+      "description": "Brand-agnostic foundational WRITING-QUALITY gate for ALL of Joe Downs' content (Joe personal, Storage Moguls, Successful Idiots, and any future brand). NOT voice, NOT de-AI — this is basic written-English competence: inferring meaning when surface text isn't self-clear, faithful paraphrasing instead of transcription, correct vocabulary, and never stitching words together that don't actually parse. Trigger as a mandatory pass inside every content skill (linkedin-posts, joe-from-podcasts, storagemoguls-podcast, successfulidiots-podcast, joe-cta, audience-comment-replies, linkedin-engage) BEFORE the humanizer pass. Load it whenever writing or editing any post/caption/script/comment from a source (podcast transcript, Notion, notes).",
+      "files": [
+        "SKILL.md",
+        "references/teaching-caption-structure.md"
+      ]
+    }
+  ]
+}

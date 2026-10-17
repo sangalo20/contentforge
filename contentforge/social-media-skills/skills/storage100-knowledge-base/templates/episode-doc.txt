@@ -1,0 +1,69 @@
+STORAGE 100 — DAY {N}
+{Full video title}
+═══════════════════════════════════════════════════════════════════════════════
+Series: Storage 100  |  Section {X} — {Section name}  |  Episode: Day {N}
+Source video: https://youtube.com/watch?v={video_id}
+Format: {live episode / daily drop}
+
+This document has THREE parts:
+  PART A — AS-IS UNDERSTANDING (complete, faithful capture of what Joe said)
+  PART B — SIMPLIFIED VERSION (plain-language, beginner-friendly, with a Key Terms glossary)
+  PART C — BOOK NOTES (for the Storage 100 book/ebook)
+
+
+═══════════════════════════════════════════════════════════════════════════════
+PART A — AS-IS UNDERSTANDING
+═══════════════════════════════════════════════════════════════════════════════
+PURPOSE OF THE EPISODE
+{1 short paragraph: Joe's stated goal for this episode.}
+
+THE CORE ARGUMENT
+{The spine — the main claims, in Joe's order.}
+
+{Then each major concept as its own headed block. Capture EVERY:
+  - concept and how Joe framed it
+  - number / stat / range (verbatim, not rounded)
+  - example / analogy / contrast he used
+  - nuance, caveat, or honest admission
+  - worked math, step by step, with his exact figures}
+
+NOTABLE / QUOTABLE LINES (verbatim)
+  • "{exact quote}"
+  • "{exact quote}"
+
+
+═══════════════════════════════════════════════════════════════════════════════
+PART B — SIMPLIFIED VERSION (for someone brand new)
+═══════════════════════════════════════════════════════════════════════════════
+KEY TERMS — read these first
+  • {Term}: {plain-language definition}
+  • {Term}: {plain-language definition}
+  {Define EVERY piece of jargon used in this episode. This block is mandatory.}
+
+THE EPISODE IN PLAIN LANGUAGE
+{Retell the whole episode simply. Short sentences. No undefined jargon.
+ Number the main points if it aids reading.}
+
+{ANY math → walk it step by step in plain terms.}
+
+
+═══════════════════════════════════════════════════════════════════════════════
+PART C — BOOK NOTES (for the Storage 100 book / ebook)
+═══════════════════════════════════════════════════════════════════════════════
+CHAPTER ROLE
+{Where this fits in the book; what it sets up or pays off.}
+
+FRAMEWORK / SPINE (reusable)
+{Any repeatable structure introduced — list it.}
+
+ANCHOR STATS / FACTS TO CARRY FORWARD
+  • {stat}  [VERIFY before print if externally cited]
+
+STRONGEST QUOTES FOR THE BOOK
+  • "{quote}"
+
+TONE / VOICE NOTES
+{How Joe taught it — candor, contrast-teaching, theory-then-number, etc.}
+
+OPEN ITEMS / FOOTNOTES TO RESOLVE LATER
+  • {claim to verify, illustrative-vs-real flag, nuance to preserve}

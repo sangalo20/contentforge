@@ -1,0 +1,71 @@
+# Cloud Build trigger: build the Dockerfile and deploy to the Cloud Run
+# service "contentforge" on every push to main. Mirrors the Odin agent's
+# continuous-deployment trigger.
+#
+# One-time prerequisite: connect this GitHub repo to Cloud Build (1st-gen
+# GitHub App) via the console, region "global":
+#   https://console.cloud.google.com/cloud-build/triggers/connect
+#
+# Import (creates/updates the trigger):
+#   gcloud builds triggers import \
+#     --source=infra/cloudbuild-trigger.yaml \
+#     --project=prod1-svc-pygl-v2 --region=global
+#
+# First deploy of the current HEAD (after import):
+#   gcloud builds triggers run contentforge-main-deploy \
+#     --branch=main --project=prod1-svc-pygl-v2 --region=global
+name: contentforge-main-deploy
+description: Build and deploy to Cloud Run service contentforge on push to "^main$"
+github:
+  name: contentforge
+  owner: Belrose-Group
+  push:
+    branch: ^main$
+includeBuildLogs: INCLUDE_BUILD_LOGS_WITH_STATUS
+serviceAccount: projects/prod1-svc-pygl-v2/serviceAccounts/951952818514-compute@developer.gserviceaccount.com
+tags:
+- gcp-cloud-build-deploy-cloud-run
+- gcp-cloud-build-deploy-cloud-run-managed
+- contentforge
+substitutions:
+  _AR_HOSTNAME: us-east4-docker.pkg.dev
+  _AR_PROJECT_ID: prod1-svc-pygl-v2
+  _AR_REPOSITORY: cloud-run-source-deploy
+  _DEPLOY_REGION: us-east4
+  _PLATFORM: managed
+  _SERVICE_NAME: contentforge
+build:
+  images:
+  - $_AR_HOSTNAME/$_AR_PROJECT_ID/$_AR_REPOSITORY/$REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA
+  options:
+    logging: CLOUD_LOGGING_ONLY
+    substitutionOption: ALLOW_LOOSE
+  steps:
+  - name: gcr.io/cloud-builders/docker
+    id: Build
+    args:
+    - build
+    - --no-cache
+    - -t
+    - $_AR_HOSTNAME/$_AR_PROJECT_ID/$_AR_REPOSITORY/$REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA
+    - .
+    - -f
+    - Dockerfile
+  - name: gcr.io/cloud-builders/docker
+    id: Push
+    args:
+    - push
+    - $_AR_HOSTNAME/$_AR_PROJECT_ID/$_AR_REPOSITORY/$REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA
+  - name: gcr.io/google.com/cloudsdktool/cloud-sdk:slim
+    id: Deploy
+    entrypoint: gcloud
+    args:
+    - run
+    - services
+    - update
+    - $_SERVICE_NAME
+    - --platform=managed
+    - --image=$_AR_HOSTNAME/$_AR_PROJECT_ID/$_AR_REPOSITORY/$REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA
+    - --labels=managed-by=gcp-cloud-build-deploy-cloud-run,commit-sha=$COMMIT_SHA,gcb-build-id=$BUILD_ID,gcb-trigger-id=$_TRIGGER_ID
+    - --region=$_DEPLOY_REGION
+    - --quiet

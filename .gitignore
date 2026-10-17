@@ -1,0 +1,38 @@
+# OS / editor
+.DS_Store
+**/.claude/settings.local.json
+
+# Dependencies & virtualenvs
+node_modules/
+venv/
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Build output
+build/
+dist/
+
+# Secrets & local config (examples are kept)
+.env
+.env.local
+!.env.example
+infra/.demo_credentials
+infra/.secrets_ready
+**/terraform.tfvars
+
+# Terraform state & providers
+.terraform/
+*.tfstate
+*.tfstate.*
+.terraform.lock.hcl
+crash.log
+
+# Logs
+*.log
+
+# Oversized binaries (global pre-commit hook blocks files >3MB)
+slides/human-is-the-reviewer.pptx
+slides/template.pptx
+slides/preview/template.pdf

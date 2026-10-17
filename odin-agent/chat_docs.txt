@@ -1,0 +1,305 @@
+        Chat Endpoint - JarvisCore
+          Skip to content
+            JarvisCore
+              Chat Endpoint
+            Initializing search
+    Prescott-Data/jarviscore-framework
+  Welcome
+  Getting Started
+  Concepts
+  Guides
+  Examples
+  Reference
+  Enterprise
+    JarvisCore
+    Prescott-Data/jarviscore-framework
+    Welcome
+    Welcome
+    Website
+    Community
+    Blog
+    Getting Started
+    Concepts
+    Concepts
+    Architecture
+    Agents
+    Planning
+    Language Models
+    Model Routing
+    Memory
+    Agent Personas
+    P2P Communication
+    System Bundles & Atoms
+    Nexus
+    Guides
+    Guides
+    AutoAgent
+    CustomAgent
+    Adapters
+    Custom Sub-agents
+    FastAPI
+    Workflow DAGs
+    HITL Escalation
+    Nexus Credentials
+    Knowledge Base
+    Chat Endpoint
+    Chat Endpoint
+      Table of contents
+        How It Works
+        Mounting the Router
+        Endpoints
+        POST /api/v1/chat
+        GET /api/v1/chat/stream/{workflow_id}
+        GET /api/v1/chat/history/{workflow_id}/{step_id}
+        Multi-Turn Conversations
+        Adding a System Prompt Per Request
+        Further Reading
+    Internet Search
+    Browser Automation
+    Observability
+    Integrations
+    Testing Atoms
+    System Prompts
+    Testing
+    Production Deployment
+    Migration
+    Examples
+    Examples
+    Financial Pipeline
+    Research Network
+    Support Swarm
+    Content Pipeline
+    Investment Committee
+    Reference
+    Reference
+    Configuration
+    Agent API
+    Chat API
+    CLI Reference
+    Troubleshooting
+    Changelog
+    Enterprise
+      Table of contents
+        How It Works
+        Mounting the Router
+        Endpoints
+        POST /api/v1/chat
+        GET /api/v1/chat/stream/{workflow_id}
+        GET /api/v1/chat/history/{workflow_id}/{step_id}
+        Multi-Turn Conversations
+        Adding a System Prompt Per Request
+        Further Reading
+Chat Endpoint&para;
+JarvisCore agents are not just task executors — they can function as conversational interfaces. The create_chat_router factory produces a FastAPI router with a POST /chat endpoint and a real-time Server-Sent Events stream, letting you build a chat UI backed by any JarvisCore AutoAgent in minutes.
+How It Works&para;
+User message (HTTP POST)
+        ↓
+   POST /chat  →  kernel.execute(message)
+        ↓
+   Kernel routes automatically:
+     - Questions / research  → ResearcherSubAgent
+     - Coding tasks          → CoderSubAgent
+     - Browser/navigation    → BrowserSubAgent
+        ↓
+   TraceManager publishes events to Redis PubSub
+        ↓
+   GET /chat/stream/{workflow_id}  ←  UI EventSource
+     ├── thinking events (OODA loop thoughts)
+     ├── tool_start / tool_result (live tool calls)
+     └── step_complete (final answer + sources)
+The user sees the agent thinking in real time through the SSE stream, then receives the final answer.
+Mounting the Router&para;
+main.pyfrom contextlib import asynccontextmanager
+from fastapi import FastAPI
+from jarviscore import Mesh
+from jarviscore.integrations import create_chat_router
+from agents import ResearcherAgent
+mesh = Mesh()
+kernel = None
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    global kernel
+    mesh.add(ResearcherAgent)
+    await mesh.start()
+    agent = mesh.get_agent(&quot;researcher&quot;)
+    if agent is None or agent._kernel is None:
+        raise ValueError(&quot;ResearcherAgent did not initialise correctly&quot;)
+    kernel = agent._kernel
+    yield
+    await mesh.stop()
+app = FastAPI(lifespan=lifespan)
+# Mount chat endpoints at /api/v1
+app.include_router(
+    create_chat_router(kernel=kernel),
+    prefix=&quot;/api/v1&quot;,
+)
+[!NOTE]
+create_chat_router requires FastAPI. Install with pip install fastapi[all].
+Endpoints&para;
+POST /api/v1/chat&para;
+Send a message, get a response.
+Request body:
+Field
+Type
+Required
+Description
+message
+str
+Yes
+The user's message in natural language
+workflow_id
+str
+No
+Reuse an existing workflow for continuity (multi-turn). Auto-generated if omitted.
+agent_id
+str
+No
+Agent identifier (default "chat")
+system_prompt
+str
+No
+Override or extend the agent's base system prompt for this request
+context
+dict
+No
+Additional context key-value pairs injected into the agent's context window
+Response:
+Field
+Type
+Description
+workflow_id
+str
+ID to use for the SSE stream and history replay
+step_id
+str
+Step identifier within the workflow
+status
+str
+"success", "failure", or "yield"
+answer
+str
+The agent's final response
+sources
+list
+Citations from ResearcherSubAgent web results (URLs, titles)
+tokens
+dict
+Token usage breakdown
+elapsed_ms
+float
+Wall-clock execution time
+curl -X POST http://localhost:8000/api/v1/chat \
+  -H &quot;Content-Type: application/json&quot; \
+  -d &#39;{&quot;message&quot;: &quot;What is the current state of LLM inference hardware?&quot;}&#39;
+{
+  &quot;workflow_id&quot;: &quot;chat-a3f2b1&quot;,
+  &quot;step_id&quot;: &quot;step-1&quot;,
+  &quot;status&quot;: &quot;success&quot;,
+  &quot;answer&quot;: &quot;As of 2026, the LLM inference hardware landscape is dominated by...&quot;,
+  &quot;sources&quot;: [
+    {&quot;title&quot;: &quot;NVIDIA H200 Datasheet&quot;, &quot;url&quot;: &quot;https://...&quot;},
+    {&quot;title&quot;: &quot;Groq LPU Architecture&quot;, &quot;url&quot;: &quot;https://...&quot;}
+  ],
+  &quot;tokens&quot;: {&quot;input&quot;: 842, &quot;output&quot;: 341},
+  &quot;elapsed_ms&quot;: 4230.1
+}
+GET /api/v1/chat/stream/{workflow_id}&para;
+Real-time SSE stream of trace events for a workflow. Connect before or after the POST /chat call — missed events are replayed from Redis on connection.
+Browser SSE clientconst workflowId = &quot;chat-a3f2b1&quot;;
+const es = new EventSource(`/api/v1/chat/stream/${workflowId}`);
+es.onmessage = (e) =&gt; {
+    const event = JSON.parse(e.data);
+    switch (event.type) {
+        case &quot;thinking&quot;:
+            appendThought(event.data.thought);         // truncated to 2000 chars
+            break;
+        case &quot;tool_start&quot;:
+            showToolCall(event.data.tool, event.data.args);
+            break;
+        case &quot;tool_result&quot;:
+            showToolResult(event.data.tool, event.data.result, event.data.success);
+            break;
+        case &quot;step_complete&quot;:
+            renderAnswer(event.data.summary);          // sources come from POST response
+            es.close();
+            break;
+        case &quot;error&quot;:
+            showError(event.data.message);
+            es.close();
+            break;
+    }
+};
+Event types emitted:
+event.type
+event.data keys
+Description
+thinking
+thought: str
+Kernel OODA loop reasoning text (truncated at 2000 chars)
+tool_start
+tool: str, args: dict
+Tool invocation about to run
+tool_result
+tool: str, result: str, success: bool, error: str\|null
+Tool result returned
+llm_request
+system_preview: str, user_preview: str
+LLM call dispatched
+llm_response
+content_preview: str, latency_ms: float
+LLM response received
+step_complete
+success: bool, summary: str
+Execution finished — read answer and sources from the POST response
+error
+message: str
+Something went wrong
+timeout
+message: str
+Stream timed out (default: 300 seconds)
+The stream closes automatically when step_complete is emitted or the client disconnects. Sources (citations) are returned in the POST /chat response body, not in the SSE stream.
+[!NOTE]
+SSE streaming requires Redis (REDIS_URL set). Without Redis, the endpoint returns a single error event explaining that live trace is unavailable, and the POST /chat response still works normally.
+GET /api/v1/chat/history/{workflow_id}/{step_id}&para;
+Retrieve the full buffered trace event log for a past step. Useful for replaying a conversation in a UI, for debugging, or for building a "show me the agent's thinking" feature.
+curl http://localhost:8000/api/v1/chat/history/chat-a3f2b1/step-1
+{
+  &quot;events&quot;: [
+    {&quot;type&quot;: &quot;thinking&quot;, &quot;data&quot;: {&quot;thought&quot;: &quot;The user wants to know about...&quot;}},
+    {&quot;type&quot;: &quot;tool_start&quot;, &quot;data&quot;: {&quot;tool&quot;: &quot;web_search&quot;, &quot;input&quot;: {&quot;query&quot;: &quot;...&quot;}}}
+  ]
+}
+Multi-Turn Conversations&para;
+Pass the same workflow_id across multiple POST /chat calls to give the Kernel a shared memory anchor. Each call generates its own step_id (a timestamp-based key), so the episodic ledger entries are separate. What persists across calls is the Athena and long-term memory context — the Kernel rehydrates that on each request using the same workflow_id as the lookup key.
+In practice this means the agent can refer to what it learned in an earlier turn when Athena is configured. Without Athena, each call is stateless regardless of workflow_id.
+import httpx
+client = httpx.Client(base_url=&quot;http://localhost:8000&quot;)
+# Turn 1
+r1 = client.post(&quot;/api/v1/chat&quot;, json={&quot;message&quot;: &quot;Tell me about transformer attention.&quot;})
+workflow_id = r1.json()[&quot;workflow_id&quot;]
+# Turn 2 — same workflow_id; Kernel rehydrates shared memory context
+r2 = client.post(&quot;/api/v1/chat&quot;, json={
+    &quot;message&quot;: &quot;How does that compare to state space models?&quot;,
+    &quot;workflow_id&quot;: workflow_id,
+})
+[!IMPORTANT]
+Multi-turn context continuity requires Redis and Athena configured. Without Redis, the Kernel starts fresh on each request.
+Adding a System Prompt Per Request&para;
+The system_prompt field in the request is passed directly to kernel.execute() as the system prompt for the Kernel's subagent dispatch. It replaces the subagent's default system prompt for that request. The AutoAgent class's own system_prompt attribute is not affected — this field is a per-request override, not an extension of it.
+The context dict is injected into the agent's task context alongside the message:
+httpx.post(&quot;/api/v1/chat&quot;, json={
+    &quot;message&quot;: &quot;Summarise our Q1 pipeline status.&quot;,
+    &quot;system_prompt&quot;: &quot;You are advising the executive team. Be concise and direct. No jargon.&quot;,
+    &quot;context&quot;: {&quot;company&quot;: &quot;Prescott Data&quot;, &quot;quarter&quot;: &quot;Q1 2026&quot;},
+})
+Further Reading&para;
+FastAPI Integration — Full FastAPI setup with JarvisLifespan and mesh.workflow()
+Observability — How trace events are stored and what metrics are emitted
+AutoAgent Guide — The Kernel OODA loop that drives the chat endpoint
+  Back to top
+                Previous
+                Knowledge Base
+                Next
+                Internet Search
+    Made with
+      Material for MkDocs

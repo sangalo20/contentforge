@@ -1,0 +1,40 @@
+{
+  "base": "http://localhost:8000",
+  "failures": [],
+  "stages": [
+    {
+      "t": 0.0,
+      "event": "oscar_start"
+    },
+    {
+      "t": 40.8,
+      "event": "oscar_done"
+    },
+    {
+      "t": 40.8,
+      "event": "huginn_start"
+    },
+    {
+      "t": 57.2,
+      "event": "huginn_none"
+    },
+    {
+      "t": 57.2,
+      "event": "heimdall_start"
+    },
+    {
+      "t": 108.7,
+      "event": "heimdall_done"
+    }
+  ],
+  "usage": {
+    "totalUsd": 0.159829,
+    "byAgent": {
+      "oscar": 0.061448,
+      "huginn": 0.002967,
+      "heimdall": 0.095414
+    },
+    "calls": 3
+  },
+  "qaReport": "- Restored transcript phrasing (\"buried the lede\") to replace the AI-generated \"buried the most important information.\"\n- Deleted an unsupported rationale claiming brand colors drifted \"because the AI was trying to manage visual design alongside text generation.\"\n- Replaced the hallucinated AI capabilities (\"deep reasoning and context management\") with the transcript's stated requirement (\"judgment\").\n- Removed an invented claim that running Flash models \"keeps the system fast and the costs managed.\"\n- Changed \"creator to editor\" to \"writer to reviewer\" in the conclusion to maintain strict fidelity to the transcript.\n- Trimmed filler (\"Through this entire automated process\") to align closer to the practical brand persona."
+}

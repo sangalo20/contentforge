@@ -1,0 +1,24 @@
+[
+  {
+    "id": "devfest-mauritius",
+    "name": "DevFest Mauritius",
+    "description": "Demo workspace: talks, tutorials and community write-ups.",
+    "theme": "#4285F4",
+    "destination": "Blog",
+    "aiProvider": "Google",
+    "aiModel": "gemini-3.1-pro-preview",
+    "systemPrompt": "PERSONA: THE PRACTITIONER\n\nVoice: first-person, direct, operator-to-operator. Explain what was built, why, and what broke. Concrete numbers over adjectives. Short paragraphs. One clear takeaway per section. No hype, no marketing tone.",
+    "sanityConnection": null,
+    "targetWebsite": "",
+    "wordCount": "800-1200",
+    "primarySource": "",
+    "primaryOutput": "",
+    "socialPersonas": [
+      {
+        "id": "devfest-speaker",
+        "name": "Conference speaker",
+        "prompt": "You write as a developer sharing what they learned building production AI systems. Plain language, specific, generous with detail, no hype."
+      }
+    ]
+  }
+]

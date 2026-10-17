@@ -1,0 +1,34 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.30.0",
+    "@mozilla/readability": "^0.6.0",
+    "@portabletext/html": "^1.1.0",
+    "@portabletext/markdown": "^1.4.2",
+    "@sanity/client": "^7.23.0",
+    "axios": "^1.18.0",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "firebase-admin": "^14.0.0",
+    "google-auth-library": "^10.9.0",
+    "jsdom": "^29.1.1",
+    "marked": "^18.0.5",
+    "zod": "^4.5.2"
+  },
+  "devDependencies": {
+    "supertest": "^7.2.2",
+    "vitest": "^4.1.10"
+  }
+}

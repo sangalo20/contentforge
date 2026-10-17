@@ -1,0 +1,20 @@
+name: CI
+
+on:
+  push:
+    branches: [main, feat/auth]
+  pull_request:
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+          cache: pip
+      # WeasyPrint's native libs — the renderer tests produce real PDFs/PNGs.
+      - run: sudo apt-get update && sudo apt-get install -y --no-install-recommends libpango-1.0-0 libpangoft2-1.0-0 libharfbuzz-subset0
+      - run: pip install -r requirements.txt -r requirements-dev.txt
+      - run: pytest -q

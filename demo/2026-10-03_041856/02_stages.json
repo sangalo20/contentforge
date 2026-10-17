@@ -1,0 +1,26 @@
+[
+  {
+    "t": 0.0,
+    "event": "oscar_start"
+  },
+  {
+    "t": 40.8,
+    "event": "oscar_done"
+  },
+  {
+    "t": 40.8,
+    "event": "huginn_start"
+  },
+  {
+    "t": 57.2,
+    "event": "huginn_none"
+  },
+  {
+    "t": 57.2,
+    "event": "heimdall_start"
+  },
+  {
+    "t": 108.7,
+    "event": "heimdall_done"
+  }
+]

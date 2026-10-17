@@ -1,0 +1,426 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "ContentForge External API",
+    "version": "1.0.0",
+    "description": "The machine-facing pipeline surface (/api/v1). This spec is the frozen v1 contract (TECH_DEBT #1b): changes must be additive — new fields and endpoints only; renames and removals are breaking and belong to a future /api/v2. A contract test (backend/tests/openapi.contract.test.mjs) keeps this spec and the router in lockstep. The same operations are exposed as MCP tools at /api/v1/mcp. Rate limiting: every request authenticated by an API key passes a per-key token bucket (default 120 req/min per instance); over-limit responses are 429 with the standard Error envelope and a Retry-After header."
+  },
+  "servers": [
+    { "url": "https://contentforge.storagemoguls.ai", "description": "Production" },
+    { "url": "http://localhost:3005", "description": "Local dev" }
+  ],
+  "security": [{ "bearerAuth": [] }],
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "description": "A cfk_ API key (minted in Settings → API Keys) or a Firebase ID token. Keys carry their own role and workspace scope; they can never delete content or manage credentials."
+      }
+    },
+    "schemas": {
+      "Error": {
+        "type": "object",
+        "required": ["error"],
+        "properties": {
+          "error": {
+            "type": "object",
+            "required": ["code", "message"],
+            "properties": {
+              "code": { "type": "string", "enum": ["invalid_request", "forbidden", "not_found", "conflict", "rate_limited", "upstream", "internal"] },
+              "message": { "type": "string" }
+            }
+          }
+        }
+      },
+      "Workspace": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "description": { "type": ["string", "null"] },
+          "requireReview": { "type": "boolean", "description": "When true, publishing requires a reviewer-approved item." }
+        }
+      },
+      "SourceInput": {
+        "type": "object",
+        "required": ["type"],
+        "properties": {
+          "type": { "type": "string", "enum": ["youtube", "url", "text", "github", "code", "vault"] },
+          "url": { "type": "string", "description": "For youtube/url/github sources" },
+          "text": { "type": "string", "description": "For text/code sources" },
+          "label": { "type": "string" },
+          "vaultId": { "type": "string", "description": "For vault sources" },
+          "paths": { "type": "array", "items": { "type": "string" }, "maxItems": 10, "description": "For github sources: repo-relative file paths" }
+        }
+      },
+      "Job": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "type": { "type": "string", "enum": ["generation"] },
+          "status": { "type": "string", "enum": ["queued", "running", "succeeded", "failed"] },
+          "workspaceId": { "type": "string" },
+          "stages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "at": { "type": "string", "format": "date-time" },
+                "level": { "type": "string", "enum": ["info", "success", "warn"] },
+                "message": { "type": "string" }
+              }
+            }
+          },
+          "result": {
+            "type": ["object", "null"],
+            "properties": {
+              "itemId": { "type": "string" },
+              "existing": { "type": "boolean", "description": "True when this exact source combination was already generated; itemId points at the existing item." }
+            }
+          },
+          "error": { "type": ["string", "null"] },
+          "errorKind": { "type": "string", "enum": ["source", "internal"], "description": "Only when failed: source = caller-fixable inputs; internal = pipeline failure." },
+          "createdAt": { "type": ["string", "null"], "format": "date-time" },
+          "startedAt": { "type": ["string", "null"], "format": "date-time" },
+          "finishedAt": { "type": ["string", "null"], "format": "date-time" }
+        }
+      },
+      "ItemSummary": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "workspaceId": { "type": ["string", "null"] },
+          "status": { "type": "string", "enum": ["draft", "finalized", "in_review", "approved", "published"], "description": "Normalized across legacy data generations; legacy Firestore shapes never leak through v1." },
+          "title": { "type": ["string", "null"] },
+          "sources": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "type": { "type": "string" },
+                "url": { "type": "string" },
+                "title": { "type": "string" }
+              }
+            }
+          },
+          "coverImageUrl": { "type": ["string", "null"] },
+          "sanityId": { "type": ["string", "null"] },
+          "createdAt": { "type": ["string", "null"], "format": "date-time" },
+          "updatedAt": { "type": ["string", "null"], "format": "date-time" }
+        }
+      },
+      "Item": {
+        "allOf": [
+          { "$ref": "#/components/schemas/ItemSummary" },
+          {
+            "type": "object",
+            "properties": {
+              "draft": { "type": ["string", "null"], "description": "The article markdown" },
+              "imagePrompt": { "type": ["string", "null"] },
+              "qaReport": { "type": ["string", "null"] }
+            }
+          }
+        ]
+      },
+      "Comment": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "authorUid": { "type": "string" },
+          "authorEmail": { "type": ["string", "null"] },
+          "authorName": { "type": ["string", "null"] },
+          "text": { "type": "string" },
+          "mentions": { "type": "array", "items": { "type": "string" } },
+          "createdAt": { "type": ["string", "null"], "format": "date-time" }
+        }
+      },
+      "SocialEntry": {
+        "type": "object",
+        "description": "A preview row in the flattened social library; fields beyond the base vary by type (text: preview/isThread/threadCount/hasImage; carousel: slideCount/cta/fileId; poster: posterType/stat/headline/cta/fileId).",
+        "properties": {
+          "id": { "type": "string", "description": "itemId:socialKey" },
+          "itemId": { "type": "string" },
+          "channel": { "type": "string", "enum": ["linkedin", "x"] },
+          "type": { "type": "string", "enum": ["text", "carousel", "poster"] },
+          "status": { "type": "string" },
+          "articleTitle": { "type": "string" },
+          "sourceType": { "type": "string", "enum": ["article", "original"] },
+          "function": { "type": ["string", "null"] },
+          "generatedAt": { "type": ["string", "null"], "format": "date-time" },
+          "archived": { "type": "boolean" },
+          "approverEmail": { "type": ["string", "null"] }
+        }
+      },
+      "SocialDetail": {
+        "type": "object",
+        "description": "Full content of one social piece; fields beyond the base vary by format (text: post/thread/cta/imageUrl; carousel: slides/cta/fileId/template; poster: posterType/stat/headline/subline/cta/fileId/template).",
+        "properties": {
+          "itemId": { "type": "string" },
+          "channel": { "type": "string", "enum": ["linkedin", "x"] },
+          "format": { "type": "string", "enum": ["text", "carousel", "poster"] },
+          "status": { "type": "string" },
+          "function": { "type": ["string", "null"] },
+          "archived": { "type": "boolean" },
+          "generatedAt": { "type": ["string", "null"], "format": "date-time" }
+        }
+      }
+    }
+  },
+  "paths": {
+    "/api/v1/workspaces": {
+      "get": {
+        "operationId": "listWorkspaces",
+        "summary": "Workspaces this credential can generate into",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": { "application/json": { "schema": { "type": "object", "properties": { "workspaces": { "type": "array", "items": { "$ref": "#/components/schemas/Workspace" } } } } } }
+          }
+        }
+      }
+    },
+    "/api/v1/generations": {
+      "post": {
+        "operationId": "submitGeneration",
+        "summary": "Submit sources for article generation (async job)",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["workspaceId", "sources"],
+                "properties": {
+                  "workspaceId": { "type": "string" },
+                  "sources": { "type": "array", "items": { "$ref": "#/components/schemas/SourceInput" }, "minItems": 1, "maxItems": 10 },
+                  "brief": { "type": "object", "properties": { "angle": { "type": "string" }, "workingTitle": { "type": "string" } } }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": { "description": "Job created; poll GET /api/v1/jobs/{id}", "content": { "application/json": { "schema": { "type": "object", "properties": { "job": { "$ref": "#/components/schemas/Job" } } } } } },
+          "429": { "description": "Concurrency cap reached; retry later", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Error" } } } }
+        }
+      }
+    },
+    "/api/v1/jobs/{id}": {
+      "get": {
+        "operationId": "getJob",
+        "summary": "Poll a generation job",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }],
+        "responses": {
+          "200": { "description": "OK", "content": { "application/json": { "schema": { "type": "object", "properties": { "job": { "$ref": "#/components/schemas/Job" } } } } } }
+        }
+      }
+    },
+    "/api/v1/workspaces/{id}/items": {
+      "get": {
+        "operationId": "listItems",
+        "summary": "List a workspace's article items (normalized, newest first)",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } },
+          { "name": "status", "in": "query", "schema": { "type": "string", "enum": ["draft", "finalized", "in_review", "approved", "published"] } },
+          { "name": "limit", "in": "query", "schema": { "type": "integer", "minimum": 1, "maximum": 100, "default": 50 } },
+          { "name": "cursor", "in": "query", "schema": { "type": "string" }, "description": "The previous page's nextCursor" }
+        ],
+        "responses": {
+          "200": { "description": "OK", "content": { "application/json": { "schema": { "type": "object", "properties": { "items": { "type": "array", "items": { "$ref": "#/components/schemas/ItemSummary" } }, "nextCursor": { "type": ["string", "null"] } } } } } }
+        }
+      }
+    },
+    "/api/v1/items": {
+      "post": {
+        "operationId": "importArticle",
+        "summary": "Import a finished article as-is (no AI rewriting); lands as a normal draft",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["workspaceId", "draft"],
+                "properties": {
+                  "workspaceId": { "type": "string" },
+                  "draft": { "type": "string", "maxLength": 400000, "description": "Full article markdown; the H1 heading becomes the title" },
+                  "title": { "type": "string", "maxLength": 300, "description": "Title fallback when the draft has no H1" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "Imported; status is draft — finalize/review/publish as usual", "content": { "application/json": { "schema": { "type": "object", "properties": { "item": { "$ref": "#/components/schemas/Item" } } } } } },
+          "400": { "description": "Missing draft, oversize draft, or no derivable title", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Error" } } } }
+        }
+      }
+    },
+    "/api/v1/items/{id}": {
+      "get": {
+        "operationId": "getItem",
+        "summary": "One item with its full draft",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }],
+        "responses": {
+          "200": { "description": "OK", "content": { "application/json": { "schema": { "type": "object", "properties": { "item": { "$ref": "#/components/schemas/Item" } } } } } }
+        }
+      }
+    },
+    "/api/v1/items/{id}/finalize": {
+      "post": {
+        "operationId": "finalizeItem",
+        "summary": "Mark a draft done editing (draft/finalized only; never yanks reviews)",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }],
+        "requestBody": { "content": { "application/json": { "schema": { "type": "object", "properties": { "draft": { "type": "string", "description": "Replacement draft markdown; omitted, the stored draft is kept" } } } } } },
+        "responses": {
+          "200": { "description": "OK", "content": { "application/json": { "schema": { "type": "object", "properties": { "item": { "type": "object", "properties": { "id": { "type": "string" }, "status": { "type": "string" } } } } } } } },
+          "409": { "description": "Item is in review, approved, or published", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Error" } } } }
+        }
+      }
+    },
+    "/api/v1/items/{id}/publish": {
+      "post": {
+        "operationId": "publishItem",
+        "summary": "Publish to the workspace's Sanity site (admin role; review gate applies)",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }],
+        "responses": {
+          "200": { "description": "Published", "content": { "application/json": { "schema": { "type": "object", "properties": { "item": { "type": "object", "properties": { "id": { "type": "string" }, "status": { "type": "string" }, "sanityId": { "type": "string" }, "title": { "type": "string" } } } } } } } },
+          "403": { "description": "Not admin, or the workspace requires reviewer approval first", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Error" } } } }
+        }
+      }
+    },
+    "/api/v1/workspaces/{id}/reviewers": {
+      "get": {
+        "operationId": "listReviewers",
+        "summary": "People holding a reviewer grant for this workspace",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }],
+        "responses": {
+          "200": { "description": "OK", "content": { "application/json": { "schema": { "type": "object", "properties": { "reviewers": { "type": "array", "items": { "type": "object", "properties": { "uid": { "type": "string" }, "email": { "type": ["string", "null"] } } } } } } } } }
+        }
+      }
+    },
+    "/api/v1/items/{id}/review": {
+      "post": {
+        "operationId": "submitReview",
+        "summary": "Submit finalized content to human reviewers (decision stays human)",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["reviewers"],
+                "properties": {
+                  "reviewers": { "type": "array", "items": { "type": "string" }, "minItems": 1, "description": "Uids or member emails; unknown emails are a 400, never a silent drop" },
+                  "note": { "type": "string" },
+                  "kind": { "type": "string", "enum": ["article", "text", "carousel", "poster"], "default": "article" },
+                  "channel": { "type": "string", "enum": ["linkedin", "x"], "description": "Required for social kinds" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "In review", "content": { "application/json": { "schema": { "type": "object", "properties": { "review": { "type": "object", "properties": { "status": { "type": "string" }, "reviewers": { "type": "array", "items": { "type": "string" } }, "note": { "type": ["string", "null"] } } } } } } } },
+          "422": { "description": "Content is not finalized yet", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Error" } } } }
+        }
+      }
+    },
+    "/api/v1/items/{id}/comments": {
+      "get": {
+        "operationId": "listComments",
+        "summary": "The item's comment thread, oldest first",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }],
+        "responses": {
+          "200": { "description": "OK", "content": { "application/json": { "schema": { "type": "object", "properties": { "comments": { "type": "array", "items": { "$ref": "#/components/schemas/Comment" } } } } } } }
+        }
+      },
+      "post": {
+        "operationId": "postComment",
+        "summary": "Comment on an item; mentions tag members (bell + email)",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["text"],
+                "properties": {
+                  "text": { "type": "string", "maxLength": 5000 },
+                  "mentions": { "type": "array", "items": { "type": "string" }, "description": "Uids or member emails" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "Posted", "content": { "application/json": { "schema": { "type": "object", "properties": { "comment": { "$ref": "#/components/schemas/Comment" } } } } } }
+        }
+      }
+    },
+    "/api/v1/workspaces/{id}/socials": {
+      "get": {
+        "operationId": "listSocials",
+        "summary": "The workspace's flattened social library (previews, newest first)",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }],
+        "responses": {
+          "200": { "description": "OK", "content": { "application/json": { "schema": { "type": "object", "properties": { "socials": { "type": "array", "items": { "$ref": "#/components/schemas/SocialEntry" } } } } } } }
+        }
+      }
+    },
+    "/api/v1/items/{id}/socials/{channel}": {
+      "get": {
+        "operationId": "getSocial",
+        "summary": "One social piece with its full content",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } },
+          { "name": "channel", "in": "path", "required": true, "schema": { "type": "string", "enum": ["linkedin", "x"] } },
+          { "name": "format", "in": "query", "schema": { "type": "string", "enum": ["text", "carousel", "poster"], "default": "text" } }
+        ],
+        "responses": {
+          "200": { "description": "OK", "content": { "application/json": { "schema": { "type": "object", "properties": { "social": { "$ref": "#/components/schemas/SocialDetail" } } } } } }
+        }
+      }
+    },
+    "/api/v1/items/{id}/socials": {
+      "post": {
+        "operationId": "generateSocial",
+        "summary": "Generate social content for an item (blocking; workspace personas/branding apply)",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "channel": { "type": "string", "enum": ["linkedin", "x"], "default": "linkedin" },
+                  "function": { "type": "string", "default": "teach" },
+                  "format": { "type": "string", "description": "text (default) | carousel | poster" },
+                  "personaId": { "type": "string" },
+                  "template": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "Reviewable draft saved on the item", "content": { "application/json": { "schema": { "type": "object", "properties": { "social": { "$ref": "#/components/schemas/SocialDetail" } } } } } },
+          "409": { "description": "The item has no source text to work from", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Error" } } } },
+          "429": { "description": "Social-generation concurrency cap reached; retry when one finishes", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Error" } } } }
+        }
+      }
+    },
+    "/api/v1/mcp": {
+      "post": {
+        "operationId": "mcp",
+        "summary": "The MCP endpoint (Streamable HTTP, stateless). Not a REST route: speaks MCP JSON-RPC; every v1 operation is exposed as a tool. Connect an MCP client with the same bearer credential.",
+        "responses": {
+          "200": { "description": "JSON-RPC response" }
+        }
+      }
+    }
+  }
+}

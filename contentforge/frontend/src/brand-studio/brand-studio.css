@@ -1,0 +1,137 @@
+/* Brand Studio styles: self-hosted brand fonts and the studio's canvas-area
+   utilities. Font files live in frontend/public/fonts/ — exports render
+   client-side, so faces must be same-origin (html-to-image inlines them). */
+
+/* ── Storage Moguls ── */
+@font-face {
+  font-family: 'Barlow Condensed';
+  src: url('/fonts/barlow-condensed-600.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Barlow Condensed';
+  src: url('/fonts/barlow-condensed-700.woff2') format('woff2');
+  font-weight: 400 500 700 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Montserrat';
+  src: url('/fonts/montserrat-400.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Montserrat';
+  src: url('/fonts/montserrat-600.woff2') format('woff2');
+  font-weight: 500 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Montserrat';
+  src: url('/fonts/montserrat-800.woff2') format('woff2');
+  font-weight: 700 800 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Big Shoulders Display';
+  src: url('/fonts/big-shoulders-display-700.woff2') format('woff2');
+  font-weight: 600 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Big Shoulders Display';
+  src: url('/fonts/big-shoulders-display-900.woff2') format('woff2');
+  font-weight: 800 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Fraunces';
+  src: url('/fonts/fraunces-600.woff2') format('woff2');
+  font-weight: 400 600 700 800 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ── Successful Idiots ── */
+@font-face {
+  font-family: 'Oswald';
+  src: url('/fonts/oswald-500.woff2') format('woff2');
+  font-weight: 400 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Oswald';
+  src: url('/fonts/oswald-700.woff2') format('woff2');
+  font-weight: 600 700 800 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Open Sans';
+  src: url('/fonts/open-sans-400.woff2') format('woff2');
+  font-weight: 400 500 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Space Mono';
+  src: url('/fonts/space-mono-400.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Space Mono';
+  src: url('/fonts/space-mono-700.woff2') format('woff2');
+  font-weight: 500 600 700 800 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ── Joe Downs / StorPro ── */
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/inter-400.woff2') format('woff2');
+  font-weight: 400 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/inter-700.woff2') format('woff2');
+  font-weight: 600 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/inter-900.woff2') format('woff2');
+  font-weight: 800 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ── Studio chrome utilities ── */
+.bs-pattern-dots {
+  background-image: radial-gradient(circle, rgba(0, 0, 0, 0.06) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+.bs-scrollbar-thin::-webkit-scrollbar {
+  width: 4px;
+}
+.bs-scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+.bs-scrollbar-thin::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 2px;
+}

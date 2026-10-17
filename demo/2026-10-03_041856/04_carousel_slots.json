@@ -1,0 +1,43 @@
+{
+  "status": "success",
+  "channel": "linkedin",
+  "format": "carousel",
+  "slides": [
+    {
+      "kind": "hook",
+      "heading": "One giant prompt will fail your workflow",
+      "body": "We tried using a single prompt to research, draft, edit, and design content. It failed consistently. Here is what we learned from rebuilding it."
+    },
+    {
+      "kind": "point",
+      "heading": "Split the work into specialized agents",
+      "body": "We replaced our single prompt with seven task-specific agents. One drafts, one checks citations, one guards tone, and one formats text. Accuracy improved the moment each agent received one job."
+    },
+    {
+      "kind": "point",
+      "heading": "Match models to operational needs",
+      "body": "Heavy reasoning tasks run on Gemini 3.1 Pro. Fast, repetitive tasks run on Gemini 3.8 Flash. Assigning models based on role keeps costs down without dropping quality."
+    },
+    {
+      "kind": "point",
+      "heading": "Build automatic retries and failovers",
+      "body": "Endpoints flake during long generations. If our social copy agent fails, it retries twice before failing over to a larger model. The screen never displays half-written data."
+    },
+    {
+      "kind": "point",
+      "heading": "Let code handle the visual design",
+      "body": "Brand consistency drifts when models manage layout. Our agents return raw text in structured JSON. A deterministic code renderer maps that text directly into fixed brand templates."
+    },
+    {
+      "kind": "point",
+      "heading": "Shift the operator to reviewer",
+      "body": "Automation handles drafting and layout. Every final asset drops into an approval queue. The human operator never writes from scratch, but always gives the final sign-off."
+    },
+    {
+      "kind": "cta",
+      "heading": "Keep your system modular",
+      "body": "Save this post for the next time you design an automated content pipeline."
+    }
+  ],
+  "cta": "Save this post for the next time you design an automated content pipeline."
+}

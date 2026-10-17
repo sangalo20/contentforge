@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 170 96">
+  <defs>
+    <mask id="slats">
+      <rect width="170" height="96" fill="#fff"/>
+      <rect x="57" y="14" width="56" height="3" fill="#000"/>
+      <rect x="66" y="30" width="38" height="5" fill="#000"/><rect x="66" y="41" width="38" height="5" fill="#000"/><rect x="66" y="52" width="38" height="5" fill="#000"/><rect x="66" y="63" width="38" height="5" fill="#000"/><rect x="66" y="74" width="38" height="5" fill="#000"/><rect x="18" y="46" width="27" height="4.5" fill="#000"/><rect x="18" y="56" width="27" height="4.5" fill="#000"/><rect x="18" y="66" width="27" height="4.5" fill="#000"/><rect x="18" y="76" width="27" height="4.5" fill="#000"/><rect x="125" y="46" width="27" height="4.5" fill="#000"/><rect x="125" y="56" width="27" height="4.5" fill="#000"/><rect x="125" y="66" width="27" height="4.5" fill="#000"/><rect x="125" y="76" width="27" height="4.5" fill="#000"/>
+    </mask>
+  </defs>
+  <g fill="#F5F3EE" mask="url(#slats)">
+    <rect x="57" y="6" width="56" height="80"/>
+    <rect x="10" y="30" width="43" height="56"/>
+    <rect x="117" y="30" width="43" height="56"/>
+  </g>
+  <rect x="0" y="90" width="170" height="6" fill="#F5F3EE"/>
+  <rect x="80" y="0" width="10" height="4" fill="#2E7DF6"/>
+</svg>
