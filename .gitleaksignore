@@ -1,7 +1,4 @@
 # gitleaks allowlist — fingerprints of known false positives (repo root).
 #
-# Firebase Web SDK "API key" is a public client-side identifier, not a secret.
-# See contentforge/.gitleaksignore and contentforge/frontend/.env.example.
-contentforge/frontend/.env.production:gcp-api-key:1
 # "linkedinreview" is a skill command name, not a LinkedIn client id.
 contentforge/social-media-skills/skills/posts-engine/SKILL.md:linkedin-client-id:106
