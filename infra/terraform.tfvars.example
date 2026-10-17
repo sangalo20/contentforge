@@ -1,0 +1,12 @@
+# Copy to terraform.tfvars (git-ignored) and fill in.
+project_id = "your-gcp-project"
+region     = "us-central1"
+
+# Demo only: public URL. Anyone with the URL can trigger paid model calls, so
+# flip this back to false (or run ./deploy.sh down) after the talk.
+allow_unauthenticated = false
+
+# Operator access (ID-token calls / `gcloud run services proxy`).
+invoker_members = [
+  "user:you@example.com",
+]

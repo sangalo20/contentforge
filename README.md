@@ -1,0 +1,77 @@
+# ContentForge — DevFest Mauritius 2026
+
+Companion repository for the talk **"The Human Is the Reviewer: Shipping a Production Multi-Agent Content Platform on Gemini and Cloud Run"** (DevFest Mauritius, 2026).
+
+ContentForge is a self-hosted AI content pipeline. It turns source material (YouTube transcripts, web articles, pasted text, GitHub repos, a banked Source Vault) into edited, reviewed, published blog posts, newsletter issues, and social content. A human approves every stage; the agents do the drafting.
+
+```
+Browser (React 19 + Vite)
+   │  HTTP / SSE
+   ▼
+ContentForge backend (Express)  ── Firestore · Cloud Storage · Sanity CMS
+   │  HTTP / NDJSON / SSE  (Cloud Run IAM)
+   ▼
+Odin Agent (FastAPI + jarviscore)
+   Odin (orchestrator) · Oscar (writer) · Heimdall (QA gate)
+   Huginn (citations) · Hermes (images) · Loki (social) · Mimir (vault scout)
+   └─ Gemini via Vertex AI (text + images)
+```
+
+## Repository layout
+
+| Directory | What it is |
+| --- | --- |
+| [`contentforge/`](contentforge/) | The web app: React frontend, Express API, external `/api/v1` REST + MCP surface, and full docs. Start with its [README](contentforge/README.md). |
+| [`odin-agent/`](odin-agent/) | The multi-agent orchestration service (FastAPI, jarviscore P2P mesh). See its [README](odin-agent/README.md). |
+| [`infra/`](infra/) | Terraform for Google Cloud in two layers (`base/` stateful resources, root app layer with two Cloud Run services) plus `deploy.sh` and an end-to-end smoke test. |
+| [`demo/`](demo/) | Artifacts from the live demo run: personas, pipeline stage output, generated cover, carousel, and LinkedIn post. |
+| [`slides/`](slides/) | The deck as PDF and the python-pptx script that builds it from the official template. |
+
+## Running locally
+
+Each service runs on its own. Copy the `.env.example` in each service to `.env` and fill in the keys.
+
+```bash
+# Backend  → http://localhost:3005
+cd contentforge/backend && npm install && node server.js
+
+# Frontend → http://localhost:5193
+cd contentforge/frontend && npm install && npm run dev
+
+# Odin Agent → http://localhost:8000
+cd odin-agent && python3 -m venv venv && source venv/bin/activate
+pip install -r requirements.txt && uvicorn main:app --port 8000 --reload
+```
+
+The backend needs Google application default credentials (`gcloud auth application-default login`) for Firestore and Storage. The full setup guide is in [`contentforge/docs/setup.md`](contentforge/docs/setup.md).
+
+## Deploying to Google Cloud
+
+`infra/deploy.sh` wraps both Terraform layers. The split exists so the app layer can be torn down and recreated on stage in a couple of minutes from prebuilt images, while the stateful base (Firestore, Firebase Auth, Artifact Registry, Secret Manager, buckets) stays put.
+
+```bash
+cd infra
+cp base/terraform.tfvars.example base/terraform.tfvars   # project_id, region, auth domains
+cp terraform.tfvars.example terraform.tfvars             # project_id, region, invoker members
+./deploy.sh base        # once: APIs, registry, secrets, Firestore, Firebase Auth, buckets
+./deploy.sh secrets     # push API keys into Secret Manager
+./deploy.sh build       # build and push both container images
+./deploy.sh bootstrap   # seed the demo workspace and user
+./deploy.sh up          # apply the app layer: service accounts, IAM, two Cloud Run services
+./deploy.sh smoke       # hit the deployed services
+./deploy.sh down        # remove the app layer, keep base
+./deploy.sh nuke        # remove everything
+./deploy.sh images      # list the images in Artifact Registry
+```
+
+`terraform.tfvars`, Terraform state, and `.demo_credentials` are deliberately not committed.
+
+## The talk in one paragraph
+
+One business, seven platforms, one person rewriting the same idea by hand for each. ContentForge replaces the rewriting with a pipeline of specialised agents on Gemini, but keeps a human as the gate at every stage: draft, QA, citations, cover image, social copy, publish. The deck in `slides/` walks through the architecture, what broke in production, and what it costs per run. The `demo/` folder holds the real output of the run shown on stage.
+
+## Not in this repo
+
+- Secrets: `.env` files, `terraform.tfvars`, Terraform state, demo credentials.
+- Large binaries: the editable `.pptx` deck and the slide template. The PDF export is included.
+- Dependencies: `node_modules/`, `venv/`, `.terraform/`.

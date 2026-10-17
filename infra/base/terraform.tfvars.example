@@ -1,0 +1,7 @@
+# Copy to terraform.tfvars (git-ignored) and fill in.
+project_id = "your-gcp-project"
+region     = "us-central1"
+
+# Cloud Run hostnames allowed for Firebase Auth sign-in. Add the app URL
+# printed by `terraform output app_url` after the first ./deploy.sh up.
+auth_domains = []
