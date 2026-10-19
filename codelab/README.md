@@ -28,5 +28,7 @@ claat serve
 Open the local URL printed by `claat serve` and check every step, code block, and link. Exported HTML is generated output; commit the Markdown source, not the export directory.
 
 ## Publishing
+The codelab is published automatically by [`.github/workflows/codelab-pages.yml`](../.github/workflows/codelab-pages.yml): every push to `main` that touches `codelab/` runs `claat export` and deploys the result to GitHub Pages. The Markdown here is the only source; nothing generated is committed.
 
-The source is marked `Draft`. Before publishing, replace workshop-specific names if needed and test the exported page in a fresh browser session. The reliable publication path is to host the exported static HTML from an approved static site (for example, GitHub Pages or Firebase Hosting) and share that URL with attendees. Confirm event branding and hosting approval before publication.
+One-time setup in the repository: **Settings → Pages → Build and deployment → Source: GitHub Actions**. The published URL is printed in the workflow's `deploy` job.
+
