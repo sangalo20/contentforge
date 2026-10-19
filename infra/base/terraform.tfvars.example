@@ -1,7 +1,12 @@
-# Copy to terraform.tfvars (git-ignored) and fill in.
-project_id = "your-gcp-project"
-region     = "us-central1"
+# ===========================================================================
+# ContentForge DevFest — base layer (applied once, never destroyed)
+# Copy to terraform.tfvars (git-ignored), fill in, then: ./deploy.sh base
+# ===========================================================================
 
-# Cloud Run hostnames allowed for Firebase Auth sign-in. Add the app URL
-# printed by `terraform output app_url` after the first ./deploy.sh up.
+project_id = "your-gcp-project"
+region     = "us-central1" # Cloud Run, Artifact Registry, Firestore, buckets
+
+# Hostnames Firebase Auth will accept sign-ins from. The app URL only exists
+# after the first `./deploy.sh up`; copy it from that output, add it here, and
+# run `./deploy.sh base` once more. Pattern: contentforge-<hash>-uc.a.run.app
 auth_domains = []

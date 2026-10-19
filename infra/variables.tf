@@ -3,6 +3,11 @@ variable "project_id" {
   type        = string
 }
 
+variable "owner_email" {
+  description = "Login created by `deploy.sh bootstrap` as workspace owner. Read by deploy.sh; not used by Terraform resources."
+  type        = string
+}
+
 variable "region" {
   description = "Region for Cloud Run. Must match the base layer (registry, Firestore, buckets)."
   type        = string

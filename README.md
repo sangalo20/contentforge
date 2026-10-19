@@ -52,17 +52,23 @@ The backend needs Google application default credentials (`gcloud auth applicati
 ```bash
 cd infra
 cp base/terraform.tfvars.example base/terraform.tfvars   # project_id, region, auth domains
-cp terraform.tfvars.example terraform.tfvars             # project_id, region, invoker members
+cp terraform.tfvars.example terraform.tfvars             # project, owner email, model cards, sizing, access
 ./deploy.sh base        # once: APIs, registry, secrets, Firestore, Firebase Auth, buckets
 ./deploy.sh secrets     # push API keys into Secret Manager
-./deploy.sh build       # build and push both container images
-./deploy.sh bootstrap   # seed the demo workspace and user
+./deploy.sh build       # build and push both container images (tagged :demo)
 ./deploy.sh up          # apply the app layer: service accounts, IAM, two Cloud Run services
+./deploy.sh bootstrap   # create the owner login (writes infra/.demo_credentials)
 ./deploy.sh smoke       # hit the deployed services
 ./deploy.sh down        # remove the app layer, keep base
 ./deploy.sh nuke        # remove everything
 ./deploy.sh images      # list the images in Artifact Registry
 ```
+
+After the first `up`, add the printed app URL hostname to `auth_domains` in `base/terraform.tfvars` and run `./deploy.sh base` again so Firebase Auth accepts sign-ins from it.
+
+Model choice is configuration, not code: `gemini_model`, `gemini_flash_model` and `image_model` in `terraform.tfvars` become env vars on the agent service, which reads them on every call. Change one and run `./deploy.sh up`; no rebuild.
+
+`deploy.sh` pins the gcloud configuration and ADC file at the top (`CLOUDSDK_ACTIVE_CONFIG_NAME`, `GOOGLE_APPLICATION_CREDENTIALS`). Point those at your own, or remove the two lines to use your default gcloud login.
 
 `terraform.tfvars`, Terraform state, and `.demo_credentials` are deliberately not committed.
 
