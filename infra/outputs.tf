@@ -15,5 +15,6 @@ output "build_region" {
 }
 
 output "firebase_web_config" {
-  value = local.base.firebase_web_config
+  sensitive = true
+  value     = local.base.firebase_web_config
 }

@@ -19,6 +19,7 @@ locals {
     "identitytoolkit.googleapis.com",
     "serviceusage.googleapis.com",
     "secretmanager.googleapis.com",
+    "apikeys.googleapis.com",
   ]
   compute_default_sa = "${data.google_project.this.number}-compute@developer.gserviceaccount.com"
 }
@@ -153,6 +154,38 @@ data "google_firebase_web_app_config" "contentforge" {
   provider   = google-beta
   project    = var.project_id
   web_app_id = google_firebase_web_app.contentforge.app_id
+}
+
+# Firebase auto-creates an unrestricted browser key. The frontend uses this
+# one instead: locked to the app's origins and to the APIs the web SDK calls.
+# Rotation = taint this resource and rebuild the frontend.
+resource "google_apikeys_key" "web" {
+  project      = var.project_id
+  name         = "contentforge-web"
+  display_name = "ContentForge web (browser, restricted)"
+
+  restrictions {
+    browser_key_restrictions {
+      allowed_referrers = concat(
+        ["http://localhost:5193/*", "https://${var.project_id}.firebaseapp.com/*"],
+        [for d in var.auth_domains : "https://${d}/*"],
+      )
+    }
+    dynamic "api_targets" {
+      for_each = [
+        "identitytoolkit.googleapis.com",
+        "securetoken.googleapis.com",
+        "firestore.googleapis.com",
+        "firebasestorage.googleapis.com",
+        "firebaseinstallations.googleapis.com",
+        "firebase.googleapis.com",
+      ]
+      content {
+        service = api_targets.value
+      }
+    }
+  }
+  depends_on = [google_project_service.apis]
 }
 
 # ------------------------------------------------- Secrets (containers only)

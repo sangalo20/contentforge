@@ -9,8 +9,9 @@ output "supadata_secret_id" { value = google_secret_manager_secret.supadata.secr
 output "serper_secret_id" { value = google_secret_manager_secret.serper.secret_id }
 
 output "firebase_web_config" {
+  sensitive = true
   value = {
-    VITE_FIREBASE_API_KEY             = data.google_firebase_web_app_config.contentforge.api_key
+    VITE_FIREBASE_API_KEY             = google_apikeys_key.web.key_string
     VITE_FIREBASE_AUTH_DOMAIN         = data.google_firebase_web_app_config.contentforge.auth_domain
     VITE_FIREBASE_PROJECT_ID          = var.project_id
     VITE_FIREBASE_STORAGE_BUCKET      = google_storage_bucket.media.name
