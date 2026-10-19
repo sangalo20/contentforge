@@ -1,0 +1,62 @@
+name: Publish codelab to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "codelab/**"
+      - ".github/workflows/codelab-pages.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.22"
+
+      # googlecodelabs/tools is archived; claat is a nested module with no
+      # semver tags, so pin the last commit's pseudo-version rather than @latest.
+      - name: Install claat
+        run: go install github.com/googlecodelabs/tools/claat@v0.0.0-20240220115335-873fe39d02dc
+
+      - name: Export codelab
+        run: |
+          mkdir -p site
+          claat export -o site codelab/contentforge-heimdall-guard.md
+          # Root index so the Pages URL lands on the codelab, not a 404.
+          dir=$(find site -mindepth 1 -maxdepth 1 -type d | head -1)
+          slug=$(basename "$dir")
+          cat > site/index.html <<EOF
+          <!doctype html><meta charset="utf-8">
+          <meta http-equiv="refresh" content="0; url=./$slug/">
+          <title>ContentForge Codelab</title>
+          <a href="./$slug/">ContentForge Codelab</a>
+          EOF
+          touch site/.nojekyll
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: export
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

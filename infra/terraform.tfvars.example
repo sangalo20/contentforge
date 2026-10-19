@@ -1,12 +1,50 @@
-# Copy to terraform.tfvars (git-ignored) and fill in.
-project_id = "your-gcp-project"
-region     = "us-central1"
+# ===========================================================================
+# ContentForge DevFest — app layer settings
+# Copy to terraform.tfvars (git-ignored), fill in, then: ./deploy.sh up
+# ===========================================================================
 
-# Demo only: public URL. Anyone with the URL can trigger paid model calls, so
-# flip this back to false (or run ./deploy.sh down) after the talk.
+# --- Google Cloud -----------------------------------------------------------
+project_id = "your-gcp-project"
+region     = "us-central1" # must match infra/base/terraform.tfvars
+
+# --- Who owns the app -------------------------------------------------------
+# `./deploy.sh bootstrap` creates this login (email/password) as workspace owner.
+owner_email = "you@example.com"
+
+# --- Model cards ------------------------------------------------------------
+# Bare model names route to Gemini Enterprise Agent Platform via ADC (no API
+# keys). Agents read these on every call, so changing one here and running
+# `./deploy.sh up` swaps the model with no rebuild.
+#
+#   gemini_model        judgement tier  → Odin (orchestrator), Oscar (writer),
+#                                         Heimdall (QA). Also Loki's fallback.
+#   gemini_flash_model  volume tier     → Huginn (research), Loki (social),
+#                                         Mimir (vault scout)
+#   image_model         covers          → Hermes
+#
+# Any model id listed in Model Garden for your project works here.
+gemini_model       = "gemini-3.1-pro-preview"
+gemini_flash_model = "gemini-3.8-flash"
+image_model        = "gemini-3-pro-image" # Nano Banana Pro
+vertex_location    = "global"
+
+# --- Cloud Run sizing (agent service) --------------------------------------
+cpu                     = "2"
+memory                  = "2Gi"
+min_instances           = 0 # scale to zero between runs
+max_instances           = 3
+request_timeout_seconds = 900 # streamed LLM calls run for minutes
+
+# --- Access -----------------------------------------------------------------
+# Public URL. Anyone with the URL can trigger paid model calls: keep this
+# false unless you are demoing, and run `./deploy.sh down` afterwards.
 allow_unauthenticated = false
 
-# Operator access (ID-token calls / `gcloud run services proxy`).
+# Used only when allow_unauthenticated = false.
 invoker_members = [
   "user:you@example.com",
 ]
+
+# CORS allowlist for the browser (comma-separated). Add your Cloud Run app URL
+# here if you serve the frontend from a different origin.
+allowed_origins = "http://localhost:5193"

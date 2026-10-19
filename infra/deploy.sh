@@ -18,11 +18,12 @@ cd "$(dirname "$0")"
 export CLOUDSDK_ACTIVE_CONFIG_NAME=gde
 export GOOGLE_APPLICATION_CREDENTIALS="$HOME/.config/gcloud-gde/application_default_credentials.json"
 
-PROJECT=$(grep -E '^project_id' terraform.tfvars | sed -E 's/.*"(.*)".*/\1/')
-REGION=$(grep -E '^region' terraform.tfvars | sed -E 's/.*"(.*)".*/\1/')
+tfvar() { grep -E "^$1\s*=" terraform.tfvars | sed -E 's/.*"(.*)".*/\1/'; }
+PROJECT=$(tfvar project_id)
+REGION=$(tfvar region)
 REPO="$REGION-docker.pkg.dev/$PROJECT/contentforge"
 DEMO_TAG=${DEMO_TAG:-demo}
-OWNER_EMAIL=${OWNER_EMAIL:-mwenyinyo@gmail.com}
+OWNER_EMAIL=${OWNER_EMAIL:-$(tfvar owner_email)}
 IMAGE="$REPO/odin-agent:$DEMO_TAG"
 APP_IMAGE="$REPO/contentforge:$DEMO_TAG"
 
